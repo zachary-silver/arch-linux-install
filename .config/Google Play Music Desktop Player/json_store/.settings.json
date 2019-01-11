@@ -1,0 +1,46 @@
+{
+    "auto-launch": false,
+    "enableJSON_API": true,
+    "miniUseScrollVolume": false,
+    "minToTray": false,
+    "nativeFrame": true,
+    "savePage": true,
+    "scrollLyrics": true,
+    "startMinimized": false,
+    "theme": true,
+    "themeColor": "#3f485c",
+    "themeType": "HIGHLIGHT_ONLY",
+    "themeTypeShouldTrackSystem": false,
+    "preventDisplaySleep": false,
+    "enableWin10MediaService": false,
+    "enableWin10MediaServiceTrackInfo": true,
+    "lastFMMapThumbToHeart": true,
+    "service": "google-play-music",
+    "uuid": "c78719bc-661c-48bf-8c7b-6b25406e339a",
+    "fullscreen": false,
+    "maximized": false,
+    "position": [
+        -4442,
+        110
+    ],
+    "size": [
+        2201,
+        1224
+    ],
+    "lastPage": "https://play.google.com/music/listen#/home",
+    "welcomed": "4.6.1",
+    "appIconInvert": false,
+    "staticAlbumArt": false,
+    "playbackAPI": false,
+    "mini-position": [
+        290,
+        112
+    ],
+    "mini-size": [
+        310,
+        310
+    ],
+    "skipBadSongs": true,
+    "discordRichPresence": false,
+    "keepSidebarOpen": false
+}
