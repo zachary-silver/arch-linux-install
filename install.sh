@@ -61,5 +61,8 @@ cd $HOME/.bin/
 git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/
 makepkg -sri --noconfirm
 
+cd $srcdir/.vim/bundle/
+git clone https://github.com/VundleVim/Vundle.vim.git
+
 vim +PluginInstall +qall
 cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py --clang-completer --java-completer
