@@ -4,7 +4,7 @@ srcdir=$(pwd)
 
 sudo pacman -Syu
 
-sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop compton ttf-dejavu ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m jq udiskie dunst
+sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop compton ttf-dejavu ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m jq udiskie dunst cmake
 
 sudo pacman -S --noconfirm arandr evince gimp libreoffice htop cmatrix neofetch openssh chromium virtualbox virtualbox-guest-iso
 
