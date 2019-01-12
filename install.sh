@@ -2,9 +2,11 @@
 
 srcdir=$(pwd)
 
-sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop compton ttf-dejavu ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer
+sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop compton ttf-dejavu ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer openjdk8-src
 
 sudo pacman -S --noconfirm arandr evince gimp scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings udiskie libreoffice lxappearance ranger udiskie dunst w3m jq htop cmatrix neofetch openssh
+
+sudo systemctl enable lightdm.service
 
 cd silver-dmenu/ && makepkg -sri --noconfirm && cd $srcdir/
 cd silver-surf/ && makepkg -sri --noconfirm && cd $srcdir/
@@ -33,9 +35,9 @@ if [ pacman -Qi udiskie > /dev/null ]; then
 	sudo ln -s /run/media/zack /media/
 fi
 
-cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
-cp ./usr/share/pixmaps/* /usr/share/pixmaps/
-cp ./Pictures/desktop_bg.jpg $HOME/Pictures
+sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
+sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
+sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures
 
 cd $HOME/.bin/
 git clone https://aur.archlinux.org/libc++.git && cd libc++/
