@@ -28,7 +28,7 @@ cd silver-surf/ && makepkg -sri --noconfirm && cd $srcdir/
 cd silver-st/ && makepkg -sri --noconfirm && cd $srcdir/
 cd silver-dwm/ && makepkg -sri --noconfirm && cd $srcdir/
 
-cp -r .config .xprofile .scripts .vim .vimrc .bashrc $HOME/
+cp -r .config .xprofile .xbindkeysrc .scripts .vim .vimrc .bashrc $HOME/
 
 if [ ! -d "/etc/lightdm" ]; then
 	sudo mkdir /etc/lightdm

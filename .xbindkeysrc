@@ -1,14 +1,23 @@
 # Increase volume - won't increment beyond 100%
 "if [ $(amixer get Master | awk -F'[][%]' 'END{ print $2 }') -lt 100 ]; then pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ +5%; fi"
-   XF86AudioRaiseVolume
+   XF86AudioRaiseVolume # media key
+   #m:0x8 + c:69
+   #Alt + F3
+# delete the media key line and this line and uncomment the next two lines to use Alt + F3 instead
 
 # Decrease volume
 "pactl set-sink-mute @DEFAULT_SINK@ false ; pactl set-sink-volume @DEFAULT_SINK@ -5%"
-   XF86AudioLowerVolume
+   XF86AudioLowerVolume # media key
+   #m:0x8 + c:68
+   #Alt + F2
+# delete the media key line and this line and uncomment the next two lines to use Alt + F2 instead
 
 # Toggle mute
 "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-   XF86AudioMute
+   XF86AudioMute # media key
+   #m:0x8 + c:67
+   #Alt + F1
+# delete the media key line and this line and uncomment the next two lines to use Alt + F1 instead
 
 # Increase backlight
 "sudo xbacklight -inc 5"
