@@ -1,12 +1,25 @@
 #!/bin/bash
 
 srcdir=$(pwd)
+laptop="FALSE"
+
+echo "Are you on a laptop?"
+select yn in "Yes" "No"; do
+    case $yn in
+        Yes ) laptop="TRUE"; break;;
+        No ) break;;
+    esac
+done
 
 sudo pacman -Syu
 
-sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop compton ttf-dejavu ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m jq udiskie dunst cmake
+if [ laptop = "TRUE" ]; then
+	sudo pacman -S --noconfirm acpi acpilight wicd-gtk
+fi
 
-sudo pacman -S --noconfirm arandr evince gimp libreoffice htop cmatrix neofetch openssh chromium virtualbox virtualbox-guest-iso
+sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop compton ttf-dejavu ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m jq udiskie dunst cmake mpstat xbindkeys
+
+sudo pacman -S --noconfirm arandr evince gimp libreoffice htop cmatrix neofetch openssh chromium virtualbox virtualbox-guest-iso vim
 
 sudo systemctl enable lightdm.service
 
@@ -32,6 +45,14 @@ fi
 if [ ! -d "/media" ]; then
 	sudo mkdir /media
 fi
+
+if [ ! -d "$HOME/.vim"]; then
+	mkdir $HOME/.vim
+fi
+
+mkdir $HOME/.vim/.swp
+mkdir $HOME/.vim/.backup
+mkdir $HOME/.vim/.undo
 
 sudo ln -s /run/media/$USER /media/
 
@@ -83,3 +104,9 @@ vim +PluginInstall +qall
 ################## Vim code completion plugin ######################
 cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py --clang-completer --java-completer
 ####################################################################
+
+if [ laptop = "TRUE" ]; then
+	sudo systemctl stop NetworkManager.service && sudo systemctl disable NetworkManager.service
+	sudo pacman -Rs networkmanager
+	sudo systemctl enable wicd.service
+fi
