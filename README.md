@@ -3,7 +3,7 @@ Scripts and config files necessary to install my personal Arch Linux environment
 
 ## Screenshot
 
-![Screenshot](https://github.com/ZmanSilver/Arch_Linux_Install/blob/master/screen.png)
+![Screenshot](https://github.com/ZmanSilver/silver-st/blob/master/screen.png)
 
 ## Details
 
