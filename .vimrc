@@ -22,6 +22,12 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'scrooloose/nerdtree'
 Plugin 'vim-syntastic/syntastic'
 Plugin 'Valloric/YouCompleteMe'
+Plugin 'tpope/vim-commentary'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-unimpaired'
+Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
+Plugin 'pangloss/vim-javascript'
+Plugin 'mxw/vim-jsx'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
@@ -69,13 +75,16 @@ autocmd FileType java,c set tw=100 " width of document (used by gd)
 "autocmd FileType java,c set colorcolumn=101 " highlights column you're code shouldn't pass
 
 autocmd FileType java,python,c set fo-=t " don't automatically wrap text when typing
-autocmd FileType java,python,c set nowrap " don't automatically wrap on load
+autocmd FileType sh,html,css,js,java,python,c set nowrap " don't automatically wrap on load
 
 " Tabs/Spacing
 autocmd FileType java,python,c set tabstop=8 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType html,css,js set tabstop=4 expandtab shiftwidth=2 softtabstop=2
 set backspace=indent,eol,start
+
 " toggles autoindentation so pasting text doesn't get malformed
 set pastetoggle=<F2>
+
 " changes the mode to PASTE when enabled so it's easier to know if it is
 nnoremap <F2> :set invpaste paste?<CR>
 
@@ -111,18 +120,33 @@ set wildmenu
 " Removes excess white space at end of lines upon exiting file
 autocmd BufWritePre * %s/\s\+$//e
 
-" General hotkeys
-let mapleader=","
 nnoremap H 3b
 nnoremap L 3w
 nnoremap J 5j
 nnoremap K 5k
 
+" General hotkeys
+let mapleader=","
+
+" vim-commentary hotkeys
+nmap cm <Plug>Commentary
+vmap cm <Plug>Commentary
+
 " Use v (visual selection) then > or < to shift text right or left
 vnoremap < <gv
 vnoremap > >gv
 
+" Move current line up/down
+nmap <C-k> [e
+nmap <C-j> ]e
+
+" Move multiple selected lines up/down
+vmap <C-k> [egv
+vmap <C-j> ]egv
+
 " Language specific hotkeys (in insert mode, hit ',' and then letters directly after <leader> tag)
+autocmd FileType c inoremap <leader>main int main(void)<enter>{<enter><enter>return 0;<enter>}<esc>2kO
+autocmd FileType c inoremap <leader>emain int main(int argc, char *argv[])<enter>{<enter><enter>return 0;<enter>}<esc>2kO
 autocmd FileType java inoremap <leader>For for (type val: collection)<enter>{<enter>}<esc>2k2w
 autocmd FileType java inoremap <leader>sys System.out.println();<esc>hi
 autocmd FileType java inoremap <leader>err System.err.println();<esc>hi
@@ -141,6 +165,9 @@ autocmd FileType python inoremap <leader>'' '''<enter>'''<esc>O
 
 " Highlight column color
 "highlight ColorColumn ctermbg=0
+
+" Highlight text past column 80
+autocmd FileType java,python,c let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " Syntax highlighting colors
 "highlight Normal ctermfg=11

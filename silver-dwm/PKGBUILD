@@ -16,11 +16,11 @@ optdepends=('st: terminal emulator'
 provides=($pkgname)
 conflicts=($pkgname 'dwm')
 install=dwm.install
-source=(https://www.dropbox.com/s/38ptnm0zb3wko8x/silver-dwm.tar.gz
+source=(https://www.dropbox.com/s/szkhyw0zd11gw6f/silver-dwm.tar.gz
 	config.h
 	dwm.desktop)
-md5sums=('965c00eb12ea0548bfea580feb06b801'
-         'e69c18bb1d8219f186314d8de95f80e1'
+md5sums=('f8b511bd3adb17e03d1d6fd3fa0c8a32'
+         '527c190a57467f8fcd60bbffeca2b770'
          '7f873efd596b8b30e2cdc09583209874')
 
 prepare() {

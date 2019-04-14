@@ -147,6 +147,10 @@ get_song()
 		song="${title} - ${artits}"
 		time_left="${minutes}:${seconds}"
 
+		if [[ ${#song} -ge 60 ]]; then # Moderate output length
+			song="${song:0:57}..."
+		fi
+
 		if [[ ${liked} = 'true' ]]; then
 		    metadata=" ${song} ${time_left}"
 	    	else
@@ -207,6 +211,7 @@ get_wifi()
 
 	return 0
 }
+
 
 if get_battery ; then 	# laptop
 	while true;
