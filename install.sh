@@ -40,7 +40,7 @@ if ! pacman -Qs silver-dwm > /dev/null ; then
 fi
 
 if [ ! -d $HOME/.config ]; then
-	cp .config/ $HOME/
+	cp -r .config/ $HOME/
 fi
 
 if [ ! -f $HOME/.xprofile ]; then
@@ -53,6 +53,7 @@ fi
 
 if [ ! -d $HOME/.scripts ]; then
 	cp -r .scripts/ $HOME/
+	cd $HOME/.scripts/dwm_status/ && make && make clean
 fi
 
 if [ ! -d $HOME/.vim ]; then
@@ -147,13 +148,13 @@ fi
 ####################################################################
 
 ################## Vim code completion plugin ######################
-if [ ! -d ~/.vim/bundle/YouCompleteMe ]; then
+if [ -d ~/.vim/bundle/YouCompleteMe ]; then
 	cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py --clang-completer --java-completer
 fi
 ####################################################################
 
 ################## Vim code formatter plugin ######################
-if [ ! -d ~/.vim/bundle/YouCompleteMe ]; then
+if [ -d ~/.vim/bundle/vim-prettier ]; then
 	cd $HOME/.vim/bundle/vim-prettier/ && yarn install
 fi
 ####################################################################
@@ -172,4 +173,4 @@ if [ laptop = "TRUE" ]; then
 	sudo systemctl enable wicd.service
 fi
 
-cat ./etc/finished.txt
+cd $srcdir/ && cat ./etc/finished.txt

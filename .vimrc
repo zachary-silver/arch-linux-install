@@ -84,7 +84,6 @@ set backspace=indent,eol,start
 
 " toggles autoindentation so pasting text doesn't get malformed
 set pastetoggle=<F2>
-
 " changes the mode to PASTE when enabled so it's easier to know if it is
 nnoremap <F2> :set invpaste paste?<CR>
 
@@ -95,20 +94,20 @@ autocmd BufReadPost *
     \ endif
 
 " Set directories for vim's swap, backup, and undo files
-set directory=$HOME/.vim/.swp//
+set directory=$HOME/.vim/.swap//
 set backupdir=$HOME/.vim/.backup//
 set undodir=$HOME/.vim/.undo//
 
 set noruler			" don't show line and column numbers in bottom right
 set laststatus=0		" never show status bar
 set cmdheight=1			" height of the bottom command bar
+set shortmess=F			" don't show garbage in command bar
 set backspace=indent,eol,start 	" allow backspacing over everything in insert mode
 set history=50			" keep 50 lines of command line history
 set incsearch			" do incremental searching
-set shortmess=F			" don't show garbage in command bar
 set number			" displays line numbers on left side of the screen
 set relativenumber		" changes absolute line numbers to relative to cursor
-set scrolloff=10		" starts scrolling when cursor reaches this line number away from edge
+set scrolloff=5		" starts scrolling when cursor reaches this line number away from edge
 
 " Search down into subdirectories with ':find '
 " Provides tab-completion for all file-related tasks
@@ -167,7 +166,7 @@ autocmd FileType python inoremap <leader>'' '''<enter>'''<esc>O
 "highlight ColorColumn ctermbg=0
 
 " Highlight text past column 80
-autocmd FileType java,python,c let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
+"autocmd FileType java,python,c let w:m2=matchadd('ErrorMsg', '\%>80v.\+', -1)
 
 " Syntax highlighting colors
 "highlight Normal ctermfg=11
