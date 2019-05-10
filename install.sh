@@ -23,96 +23,147 @@ sudo pacman -S --noconfirm arandr evince gimp libreoffice htop cmatrix neofetch 
 
 sudo systemctl enable lightdm.service
 
-cd silver-dmenu/ && makepkg -sri --noconfirm && cd $srcdir/
-cd silver-surf/ && makepkg -sri --noconfirm && cd $srcdir/
-cd silver-st/ && makepkg -sri --noconfirm && cd $srcdir/
-cd silver-dwm/ && makepkg -sri --noconfirm && cd $srcdir/
-
-cp -r .config .xprofile .xbindkeysrc .scripts .vim .vimrc .bashrc $HOME/
-
-if [ ! -d "/etc/lightdm" ]; then
-	sudo mkdir /etc/lightdm
+if ! pacman -Qs silver-dmenu > /dev/null ; then
+	cd silver-dmenu/ && makepkg -sri --noconfirm && cd $srcdir/
 fi
 
-if [ ! -d "$HOME/Pictures" ]; then
-	mkdir $HOME/Pictures
+if ! pacman -Qs silver-surf > /dev/null ; then
+	cd silver-surf/ && makepkg -sri --noconfirm && cd $srcdir/
 fi
 
-if [ ! -d "$HOME/.bin" ]; then
-	mkdir $HOME/.bin
+if ! pacman -Qs silver-st > /dev/null ; then
+	cd silver-st/ && makepkg -sri --noconfirm && cd $srcdir/
 fi
 
-if [ ! -d "/media" ]; then
-	sudo mkdir /media
+if ! pacman -Qs silver-dwm > /dev/null ; then
+	cd silver-dwm/ && makepkg -sri --noconfirm && cd $srcdir/
 fi
 
-if [ ! -d "$HOME/.vim"]; then
-	mkdir $HOME/.vim
+if [ ! -d $HOME/.config ]; then
+	cp .config/ $HOME/
 fi
 
-mkdir $HOME/.vim/.swp
+if [ ! -f $HOME/.xprofile ]; then
+	cp .xprofile $HOME/
+fi
+
+if [ ! -f $HOME/.xbindkeysrc ]; then
+	cp .xbindkeys $HOME/
+fi
+
+if [ ! -d $HOME/.scripts ]; then
+	cp -r .scripts/ $HOME/
+fi
+
+if [ ! -d $HOME/.vim ]; then
+	cp -r .vim/ $HOME/
+fi
+
+if [ ! -f $HOME/.vimrc ]; then
+	cp .vimrc $HOME/
+fi
+
+if [ ! -f $HOME/.bashrc ]; then
+	cp .bashrc $HOME/
+fi
+
+sudo mkdir /etc/lightdm
+sudo mkdir /media
+mkdir $HOME/Pictures
+mkdir $HOME/.bin
+mkdir $HOME/.vim
+mkdir $HOME/.vim/.swap
 mkdir $HOME/.vim/.backup
 mkdir $HOME/.vim/.undo
 
 sudo ln -s /run/media/$USER /media/
 
-sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
-sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
-sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures
+if [ ! -f /etc/lightdm/lightdm-gtk-greeter.conf ]; then
+	sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
+fi
+
+if [[ ! -f /usr/share/pixmaps/greeter_bg.jpg ||
+      ! -f /usr/share/pixmaps/greeter_icon.png ]]; then
+	sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
+fi
+
+if [ ! -f $HOME/Pictures/desktop_bg.jpg ]; then
+	sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures
+fi
 
 ################## Required for Discord ############################
-cd $HOME/.bin/
-git clone https://aur.archlinux.org/libc++.git && cd libc++/
-makepkg -sri --skippgpcheck --noconfirm
+if ! pacman -Qs libc++ > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/libc++.git && cd libc++/
+	makepkg -sri --skippgpcheck --noconfirm
+fi
 ####################################################################
 
 ################## Discord #########################################
-cd $HOME/.bin/
-git clone https://aur.archlinux.org/discord.git && cd discord/
-makepkg -sri --noconfirm
+if ! pacman -Qs discord > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/discord.git && cd discord/
+	makepkg -sri --noconfirm
+fi
 ####################################################################
 
 ################## Cursor theme ####################################
-cd $HOME/.bin/
-git clone https://aur.archlinux.org/xcursor-openzone.git && cd xcursor-openzone/
-makepkg -sri --noconfirm
+if ! pacman -Qs xcursor-openzone > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/xcursor-openzone.git && cd xcursor-openzone/
+	makepkg -sri --noconfirm
+fi
 ####################################################################
 
 ################## Google Play Music Desktop Player ################
-cd $HOME/.bin/
-git clone https://aur.archlinux.org/gpmdp.git && cd gpmdp/
-makepkg -sri --noconfirm
+if ! pacman -Qs gpmdp > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/gpmdp.git && cd gpmdp/
+	makepkg -sri --noconfirm
+fi
 ####################################################################
 
 ################## Lock screen program #############################
-cd $HOME/.bin/
-git clone https://aur.archlinux.org/i3lock-color.git && cd i3lock-color/
-makepkg -sri --noconfirm
+if ! pacman -Qs i3lock-color > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/i3lock-color.git && cd i3lock-color/
+	makepkg -sri --noconfirm
+fi
 ####################################################################
 
 ################## Command line visualizer #########################
-cd $HOME/.bin/
-git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/
-makepkg -sri --noconfirm
+if ! pacman -Qs cli-visualizer > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/
+	makepkg -sri --noconfirm
+fi
 ####################################################################
 
 ################## Vim plugin manager ####################
-git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-vim +PluginInstall +qall
+if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
+	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
+	vim +PluginInstall +qall
+fi
 ####################################################################
 
 ################## Vim code completion plugin ######################
-cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py --clang-completer --java-completer
+if [ ! -d ~/.vim/bundle/YouCompleteMe ]; then
+	cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py --clang-completer --java-completer
+fi
 ####################################################################
 
 ################## Vim code formatter plugin ######################
-cd $HOME/.vim/bundle/vim-prettier/ && yarn install
+if [ ! -d ~/.vim/bundle/YouCompleteMe ]; then
+	cd $HOME/.vim/bundle/vim-prettier/ && yarn install
+fi
 ####################################################################
 
 ################## font (Hermit-Regular) #################
-cd $HOME/.bin/
-git clone https://aur.archlinux.org/otf-hermit.git && cd otf-hermit/
-makepkg -sri --noconfirm
+if ! pacman -Qs otf-hermit > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/otf-hermit.git && cd otf-hermit/
+	makepkg -sri --noconfirm
+fi
 ####################################################################
 
 if [ laptop = "TRUE" ]; then
@@ -120,3 +171,5 @@ if [ laptop = "TRUE" ]; then
 	sudo pacman -Rs networkmanager
 	sudo systemctl enable wicd.service
 fi
+
+cat ./etc/finished.txt
