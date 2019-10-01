@@ -1,5 +1,6 @@
 feh --bg-scale --no-fehbg $HOME/Pictures/desktop_bg.jpg
-xbindkeys &
+$HOME/.scripts/dwm_status/dwm_status &
 compton &
+xbindkeys &
 udiskie &
-$HOME/.scripts/dwm_status/dwm_status
+st &

@@ -14,7 +14,7 @@ done
 sudo pacman -Syu
 
 if [ laptop = "TRUE" ]; then
-	sudo pacman -S --noconfirm acpi acpilight wicd-gtk
+	sudo pacman -S --noconfirm acpi acpilight
 fi
 
 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop compton ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m udiskie dunst cmake xbindkeys
@@ -39,34 +39,14 @@ if ! pacman -Qs silver-dwm > /dev/null ; then
 	cd silver-dwm/ && makepkg -sri --noconfirm && cd $srcdir/
 fi
 
-if [ ! -d $HOME/.config ]; then
-	cp -r .config/ $HOME/
-fi
-
-if [ ! -f $HOME/.xprofile ]; then
-	cp .xprofile $HOME/
-fi
-
-if [ ! -f $HOME/.xbindkeysrc ]; then
-	cp .xbindkeys $HOME/
-fi
-
-if [ ! -d $HOME/.scripts ]; then
-	cp -r .scripts/ $HOME/
-	cd $HOME/.scripts/dwm_status/ && make && make clean
-fi
-
-if [ ! -d $HOME/.vim ]; then
-	cp -r .vim/ $HOME/
-fi
-
-if [ ! -f $HOME/.vimrc ]; then
-	cp .vimrc $HOME/
-fi
-
-if [ ! -f $HOME/.bashrc ]; then
-	cp .bashrc $HOME/
-fi
+cp -r .config/ $HOME/
+cp .xprofile $HOME/
+cp .xbindkeys $HOME/
+cp -r .scripts/ $HOME/
+cd $HOME/.scripts/dwm_status/ && make && make clean
+cp -r .vim/ $HOME/
+cp .vimrc $HOME/
+cp .bashrc $HOME/
 
 sudo mkdir /etc/lightdm
 sudo mkdir /media
@@ -79,18 +59,14 @@ mkdir $HOME/.vim/.undo
 
 sudo ln -s /run/media/$USER /media/
 
-if [ ! -f /etc/lightdm/lightdm-gtk-greeter.conf ]; then
-	sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
-fi
+sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
+sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
+sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures
 
-if [[ ! -f /usr/share/pixmaps/greeter_bg.jpg ||
-      ! -f /usr/share/pixmaps/greeter_icon.png ]]; then
-	sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
-fi
-
-if [ ! -f $HOME/Pictures/desktop_bg.jpg ]; then
-	sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures
-fi
+################## Custom Scripts ##################################
+git clone https://github.com/ZmanSilver/scripts.git
+mv scripts/ $HOME/.scripts
+####################################################################
 
 ################## Required for Discord ############################
 if ! pacman -Qs libc++ > /dev/null ; then
@@ -166,11 +142,5 @@ if ! pacman -Qs otf-hermit > /dev/null ; then
 	makepkg -sri --noconfirm
 fi
 ####################################################################
-
-if [ laptop = "TRUE" ]; then
-	sudo systemctl stop NetworkManager.service && sudo systemctl disable NetworkManager.service
-	sudo pacman -Rs networkmanager
-	sudo systemctl enable wicd.service
-fi
 
 cd $srcdir/ && cat ./etc/finished.txt

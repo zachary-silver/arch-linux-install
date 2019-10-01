@@ -14,6 +14,7 @@ endif
 " set the runtime path to include Vundle and initialize
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
+
 " alternatively, pass a path where Vundle should install plugins
 "call vundle#begin('~/some/path/here')
 
@@ -28,9 +29,12 @@ Plugin 'tpope/vim-unimpaired'
 Plugin 'prettier/vim-prettier', { 'do': 'yarn install' }
 Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
+Plugin 'leafgarland/typescript-vim'
+Plugin 'rust-lang/rust.vim'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
+
 " To ignore plugin indent changes, instead use:
 "filetype plugin on
 
@@ -39,10 +43,8 @@ call vundle#end()            " required
 " :PluginInstall    - installs plugins; append `!` to update or just :PluginUpdate
 " :PluginSearch foo - searches for foo; append `!` to refresh local cache
 " :PluginClean      - confirms removal of unused plugins; append `!` to auto-approve removal
-
 " see :h vundle for more details or wiki for FAQ
-" Put your non-Plugin stuff after this line
-"
+
 " Syntastic plugin (second line enables descriptive error feedback at bottom of
 " working window)
 let g:syntastic_always_populate_loc_list = 1
@@ -60,31 +62,47 @@ let g:ycm_global_ycm_extra_conf = "$HOME/.vim/.ycm_extra_conf.py"
 " Nerdtree (vim-based file explorer) plugin toggle with Ctrl-f
 map <C-f> :NERDTreeToggle<CR>
 
-" allows for automatic filetype detection and filetype specific features such
-" as indentation and plugins
+" Allows for automatic filetype detection and filetype
+" specific features such as indentation and plugins
 filetype plugin indent on
-syntax on			" enable syntax highlighting
-set hlsearch			" highlights searched values
-set mouse=a			" enable use of the mouse
+
+" Enable syntax highlighting
+syntax on
+
+" Highlights searched values
+set hlsearch
+
+" Enable use of the mouse
+set mouse=a
 
 " Text width for different file types
 autocmd FileType text setlocal textwidth=78
-autocmd FileType python set tw=79 " width of document (used by gd)
-"autocmd FileType python set colorcolumn=80 " highlights column you're code shouldn't pass
-autocmd FileType java,c set tw=100 " width of document (used by gd)
-"autocmd FileType java,c set colorcolumn=101 " highlights column you're code shouldn't pass
 
-autocmd FileType java,python,c set fo-=t " don't automatically wrap text when typing
-autocmd FileType sh,html,css,js,java,python,c set nowrap " don't automatically wrap on load
+" Width of document (used by gd)
+autocmd FileType java,c set tw=100
+autocmd FileType python set tw=79
+
+" Highlights column you're code shouldn't pass
+"autocmd FileType java,c set colorcolumn=101
+"autocmd FileType python set colorcolumn=80
+
+" Don't automatically wrap text when typing
+autocmd FileType java,python,c set fo-=t
+set fo-=t
+
+" Don't automatically wrap text upon opening file
+autocmd FileType sh,html,css,js,java,python,c set nowrap
+set nowrap
 
 " Tabs/Spacing
 autocmd FileType java,python,c set tabstop=8 expandtab shiftwidth=4 softtabstop=4
 autocmd FileType html,css,js set tabstop=4 expandtab shiftwidth=2 softtabstop=2
 set backspace=indent,eol,start
 
-" toggles autoindentation so pasting text doesn't get malformed
+" Toggles autoindentation so pasting text doesn't get malformed
 set pastetoggle=<F2>
-" changes the mode to PASTE when enabled so it's easier to know if it is
+
+" Changes the mode to PASTE when enabled so it's easier to realize
 nnoremap <F2> :set invpaste paste?<CR>
 
 " Return to last known location in file
@@ -98,16 +116,35 @@ set directory=$HOME/.vim/.swap//
 set backupdir=$HOME/.vim/.backup//
 set undodir=$HOME/.vim/.undo//
 
-set noruler			" don't show line and column numbers in bottom right
-set laststatus=0		" never show status bar
-set cmdheight=1			" height of the bottom command bar
-set shortmess=F			" don't show garbage in command bar
-set backspace=indent,eol,start 	" allow backspacing over everything in insert mode
-set history=50			" keep 50 lines of command line history
-set incsearch			" do incremental searching
-set number			" displays line numbers on left side of the screen
-set relativenumber		" changes absolute line numbers to relative to cursor
-set scrolloff=5		" starts scrolling when cursor reaches this line number away from edge
+" Don't show line and column numbers in bottom right
+set noruler
+
+" Never show status bar
+set laststatus=0
+
+" Height of the bottom command bar
+set cmdheight=1
+
+" Don't show garbage in command bar
+set shortmess=F
+
+" Allow backspacing over everything in insert mode
+set backspace=indent,eol,start
+
+" Keep 50 lines of command line history
+set history=50
+
+" Do incremental searching
+set incsearch
+
+" Displays line numbers on left side of the screen
+set number
+
+" Changes absolute line numbers to relative to cursor
+set relativenumber
+
+" Starts scrolling when cursor reaches this line number away from edge
+set scrolloff=5
 
 " Search down into subdirectories with ':find '
 " Provides tab-completion for all file-related tasks
@@ -116,9 +153,13 @@ set path+=**
 " Display all matching files when we tab complete
 set wildmenu
 
+" Allows you to undo even after closing and re-opening files
+set undofile
+
 " Removes excess white space at end of lines upon exiting file
 autocmd BufWritePre * %s/\s\+$//e
 
+" Key mappings
 nnoremap H 3b
 nnoremap L 3w
 nnoremap J 5j
