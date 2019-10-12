@@ -41,7 +41,7 @@ fi
 
 cp -r .config/ $HOME/
 cp .xprofile $HOME/
-cp .xbindkeys $HOME/
+cp .xbindkeysrc $HOME/
 cp -r .scripts/ $HOME/
 cd $HOME/.scripts/dwm_status/ && make && make clean
 cp -r .vim/ $HOME/
@@ -86,6 +86,9 @@ fi
 
 ################## Cursor theme ####################################
 if ! pacman -Qs xcursor-openzone > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur-dev.archlinux.org/icon-slicer.git && cd icon-slicer/
+	makepkg -sri --noconfirm
 	cd $HOME/.bin/
 	git clone https://aur.archlinux.org/xcursor-openzone.git && cd xcursor-openzone/
 	makepkg -sri --noconfirm
