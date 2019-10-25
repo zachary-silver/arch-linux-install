@@ -76,27 +76,28 @@ set hlsearch
 set mouse=a
 
 " Text width for different file types
-autocmd FileType text setlocal textwidth=78
+autocmd FileType text setlocal textwidth=80
 
 " Width of document (used by gd)
-autocmd FileType java,c set tw=100
-autocmd FileType python set tw=79
+autocmd FileType java set tw=100
+autocmd FileType python,c,javascript,css,sh,rs set tw=80
 
-" Highlights column you're code shouldn't pass
-"autocmd FileType java,c set colorcolumn=101
-"autocmd FileType python set colorcolumn=80
+" Highlights column you're code shouldn't reach
+autocmd FileType java set colorcolumn=101
+autocmd FileType python,c,javascript,css,sh,rs set colorcolumn=81
 
 " Don't automatically wrap text when typing
-autocmd FileType java,python,c set fo-=t
-set fo-=t
+"autocmd FileType java,python,c set fo-=t
+"set fo-=t
 
 " Don't automatically wrap text upon opening file
-autocmd FileType sh,html,css,js,java,python,c set nowrap
-set nowrap
+" autocmd FileType sh,html,css,js,java,python,c set nowrap
+" set nowrap
 
 " Tabs/Spacing
-autocmd FileType java,python,c set tabstop=8 expandtab shiftwidth=4 softtabstop=4
-autocmd FileType html,css,js set tabstop=4 expandtab shiftwidth=2 softtabstop=2
+autocmd FileType java,python,html,css,javascript set tabstop=2 expandtab shiftwidth=2 softtabstop=2
+autocmd FileType rs set tabstop=4 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType c set tabstop=8 expandtab shiftwidth=8 softtabstop=8
 set backspace=indent,eol,start
 
 " Toggles autoindentation so pasting text doesn't get malformed
@@ -185,23 +186,36 @@ vmap <C-k> [egv
 vmap <C-j> ]egv
 
 " Language specific hotkeys (in insert mode, hit ',' and then letters directly after <leader> tag)
-autocmd FileType c inoremap <leader>main int main(void)<enter>{<enter><enter>return 0;<enter>}<esc>2kO
-autocmd FileType c inoremap <leader>emain int main(int argc, char *argv[])<enter>{<enter><enter>return 0;<enter>}<esc>2kO
-autocmd FileType java inoremap <leader>For for (type val: collection)<enter>{<enter>}<esc>2k2w
+autocmd FileType c inoremap <leader>main int main(void) <enter>{<enter><enter>return 0;<enter>}<esc>2kO
+autocmd FileType c inoremap <leader>Main int main(int argc, char *argv[]) <enter>{<enter><enter>return 0;<enter>}<esc>2kO
+autocmd FileType java,c inoremap <leader>swi switch() {<enter><backspace>case :<enter>break;<enter>}<esc>2kyjjpjp5kwa
+autocmd FileType javascript inoremap <leader>swi switch() {<enter>case :<enter>break;<enter>}<esc>2kyjjpjp5kwa
+autocmd FileType java,c,javascript inoremap <leader>for for (int i = 0; i < ; i++) {<enter>}<esc>1k9wi
+autocmd FileType java,javascript inoremap <leader>For for (type val: collection) {<enter>}<esc>1k2w
 autocmd FileType java inoremap <leader>sys System.out.println();<esc>hi
 autocmd FileType java inoremap <leader>err System.err.println();<esc>hi
-autocmd FileType java inoremap <leader>con console.log();<esc>hi
-autocmd FileType java inoremap <leader>main public static void main (String [] args)<enter>{<enter>}<esc>O
-autocmd FileType java,c inoremap <leader>for for (int i = 0; i < ; i++)<enter>{<enter>}<esc>2k9wi
-autocmd FileType java,c inoremap <leader>if if ()<enter>{<enter>}<esc>2kwli
-autocmd FileType java,c inoremap <leader>whi while ()<enter>{<enter>}<esc>2kwli
-autocmd FileType java,c inoremap <leader>do do<enter>{<enter>} while ();<esc>hi
-autocmd FileType java,c inoremap <leader>/ /*   */<esc>3hi
+autocmd FileType java,javascript inoremap <leader>con console.log();<esc>hi
+autocmd FileType java inoremap <leader>main public static void main (String [] args) {<enter>}<esc>O
+autocmd FileType java,c,javascript inoremap <leader>if if () {<enter>}<esc>1kwli
+autocmd FileType java,c,javascript inoremap <leader>whi while () {<enter>}<esc>1kwli
+autocmd FileType java,c,javascript inoremap <leader>do do {<enter>} while ();<esc>hi
+autocmd FileType java,c,javascript inoremap <leader>/ /*   */<esc>3hi
 autocmd FileType python inoremap <leader>pr print()<esc>i
 autocmd FileType python inoremap <leader>ini def __init__(self):<esc>
 autocmd FileType python inoremap <leader>str def __str__(self):<esc>
 autocmd FileType python inoremap <leader>dun def ____(self):<esc>8hi
 autocmd FileType python inoremap <leader>'' '''<enter>'''<esc>O
+autocmd FileType javascript inoremap <leader>func () => {<enter>}<esc>k3wa
+autocmd FileType javascript inoremap <leader>Func function () {<enter>}<esc>kwi
+autocmd FileType java inoremap <leader>cla public class  {<enter>public () {<enter>}<enter>}<esc>3k2whi
+autocmd FileType java inoremap <leader>int public interface  {<enter>}<esc>k2whi
+autocmd FileType java inoremap <leader>Public public static () {<enter>}<esc>k2wi
+autocmd FileType java inoremap <leader>Private private static () {<enter>}<esc>k2wi
+autocmd FileType java inoremap <leader>public public () {<enter>}<esc>kwi
+autocmd FileType java inoremap <leader>private private () {<enter>}<esc>kwi
+
+" Run commands upon opening non-existent file of type
+"autocmd BufNewFile *.java norm inserttexthere
 
 " Highlight column color
 "highlight ColorColumn ctermbg=0
