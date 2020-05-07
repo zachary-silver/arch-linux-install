@@ -17,33 +17,17 @@ if [ laptop = "TRUE" ]; then
 	sudo pacman -S --noconfirm acpi acpilight
 fi
 
-sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop compton ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m udiskie dunst cmake xbindkeys
+sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop picom ttf-font-awesome arc-gtk-theme alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m udiskie dunst cmake xbindkeys
 
-sudo pacman -S --noconfirm arandr evince gvfs gimp libreoffice htop cmatrix neofetch openssh chromium virtualbox virtualbox-guest-iso vim yarn
+sudo pacman -S --noconfirm discord arandr evince gvfs gimp libreoffice htop cmatrix neofetch openssh firefox virtualbox virtualbox-guest-iso vim yarn npm
 
 sudo systemctl enable lightdm.service
-
-if ! pacman -Qs silver-dmenu > /dev/null ; then
-	cd silver-dmenu/ && makepkg -sri --noconfirm && cd $srcdir/
-fi
-
-if ! pacman -Qs silver-surf > /dev/null ; then
-	cd silver-surf/ && makepkg -sri --noconfirm && cd $srcdir/
-fi
-
-if ! pacman -Qs silver-st > /dev/null ; then
-	cd silver-st/ && makepkg -sri --noconfirm && cd $srcdir/
-fi
-
-if ! pacman -Qs silver-dwm > /dev/null ; then
-	cd silver-dwm/ && makepkg -sri --noconfirm && cd $srcdir/
-fi
 
 cp -r .config/ $HOME/
 cp .xprofile $HOME/
 cp .xbindkeysrc $HOME/
 cp -r .scripts/ $HOME/
-cd $HOME/.scripts/dwm_status/ && make && make clean
+cd $HOME/.scripts/dwmstatus/ && make && make clean
 cp -r .vim/ $HOME/
 cp .vimrc $HOME/
 cp .bashrc $HOME/
@@ -61,27 +45,31 @@ sudo ln -s /run/media/$USER /media/
 
 sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
 sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
-sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures
+sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures/
+
+if ! pacman -Qs silver-dmenu > /dev/null ; then
+	cp -r silver-dmenu/ $HOME/.bin/
+	cd $HOME/.bin/silver-dmenu/ && makepkg -sri --noconfirm && cd $srcdir/
+fi
+
+if ! pacman -Qs silver-surf > /dev/null ; then
+	cp -r silver-surf/ $HOME/.bin/
+	cd $HOME/.bin/silver-surf/ && makepkg -sri --noconfirm && cd $srcdir/
+fi
+
+if ! pacman -Qs silver-st > /dev/null ; then
+	cp -r silver-st/ $HOME/.bin/
+	cd $HOME/.bin/silver-st/ && makepkg -sri --noconfirm && cd $srcdir/
+fi
+
+if ! pacman -Qs silver-dwm > /dev/null ; then
+	cp -r silver-dwm/ $HOME/.bin/
+	cd $HOME/.bin/silver-dwm/ && makepkg -sri --noconfirm && cd $srcdir/
+fi
 
 ################## Custom Scripts ##################################
 git clone https://github.com/ZmanSilver/scripts.git
 mv scripts/ $HOME/.scripts
-####################################################################
-
-################## Required for Discord ############################
-if ! pacman -Qs libc++ > /dev/null ; then
-	cd $HOME/.bin/
-	git clone https://aur.archlinux.org/libc++.git && cd libc++/
-	makepkg -sri --skippgpcheck --noconfirm
-fi
-####################################################################
-
-################## Discord #########################################
-if ! pacman -Qs discord > /dev/null ; then
-	cd $HOME/.bin/
-	git clone https://aur.archlinux.org/discord.git && cd discord/
-	makepkg -sri --noconfirm
-fi
 ####################################################################
 
 ################## Cursor theme ####################################
@@ -128,7 +116,7 @@ fi
 
 ################## Vim code completion plugin ######################
 if [ -d ~/.vim/bundle/YouCompleteMe ]; then
-	cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py --clang-completer --java-completer
+	cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py
 fi
 ####################################################################
 
