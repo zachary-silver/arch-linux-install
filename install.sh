@@ -27,7 +27,7 @@ cp -r .config/ $HOME/
 cp .xprofile $HOME/
 cp .xbindkeysrc $HOME/
 cp -r .scripts/ $HOME/
-cd $HOME/.scripts/dwmstatus/ && make && make clean
+cd $HOME/.scripts/dwmstatus/ && make && make clean && cd $srcdir/
 cp -r .vim/ $HOME/
 cp .vimrc $HOME/
 cp .bashrc $HOME/
