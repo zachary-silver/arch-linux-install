@@ -26,8 +26,6 @@ sudo systemctl enable lightdm.service
 cp -r .config/ $HOME/
 cp .xprofile $HOME/
 cp .xbindkeysrc $HOME/
-cp -r .scripts/ $HOME/
-cd $HOME/.scripts/dwmstatus/ && make && make clean && cd $srcdir/
 cp -r .vim/ $HOME/
 cp .vimrc $HOME/
 cp .bashrc $HOME/
@@ -70,23 +68,24 @@ fi
 ################## Custom Scripts ##################################
 git clone https://github.com/ZmanSilver/scripts.git
 mv scripts/ $HOME/.scripts
-####################################################################
-
-################## Cursor theme ####################################
-if ! pacman -Qs xcursor-openzone > /dev/null ; then
-	cd $HOME/.bin/
-	git clone https://aur-dev.archlinux.org/icon-slicer.git && cd icon-slicer/
-	makepkg -sri --noconfirm
-	cd $HOME/.bin/
-	git clone https://aur.archlinux.org/xcursor-openzone.git && cd xcursor-openzone/
-	makepkg -sri --noconfirm
-fi
+cd $HOME/.scripts/dwmstatus/ && make && make clean && cd $srcdir/
 ####################################################################
 
 ################## Google Play Music Desktop Player ################
 if ! pacman -Qs gpmdp > /dev/null ; then
 	cd $HOME/.bin/
 	git clone https://aur.archlinux.org/gpmdp.git && cd gpmdp/
+	makepkg -sri --noconfirm
+fi
+####################################################################
+
+################## Cursor theme ####################################
+if ! pacman -Qs xcursor-openzone > /dev/null ; then
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/icon-slicer.git && cd icon-slicer/
+	makepkg -sri --noconfirm
+	cd $HOME/.bin/
+	git clone https://aur.archlinux.org/xcursor-openzone.git && cd xcursor-openzone/
 	makepkg -sri --noconfirm
 fi
 ####################################################################
@@ -126,12 +125,11 @@ if [ -d ~/.vim/bundle/vim-prettier ]; then
 fi
 ####################################################################
 
-################## font (Hermit-Regular) #################
-if ! pacman -Qs otf-hermit > /dev/null ; then
-	cd $HOME/.bin/
-	git clone https://aur.archlinux.org/otf-hermit.git && cd otf-hermit/
-	makepkg -sri --noconfirm
-fi
+################## Hermit font by pcaro90 ##########################
+cd $HOME/.bin/
+git clone https://github.com/pcaro90/hermit.git && cd hermit/packages/
+gzip -d otf-hermit-2.0.tar.gz && tar xf otf-hermit-2.0.tar
+sudo cp *.otf /usr/share/fonts/OTF/
 ####################################################################
 
 cd $srcdir/ && cat ./etc/finished.txt
