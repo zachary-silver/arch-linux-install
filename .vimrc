@@ -33,7 +33,6 @@ Plugin 'pangloss/vim-javascript'
 Plugin 'mxw/vim-jsx'
 Plugin 'leafgarland/typescript-vim'
 Plugin 'rust-lang/rust.vim'
-Plugin 'lilydjwg/colorizer'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required
