@@ -19,7 +19,7 @@ fi
 
 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop picom ttf-font-awesome alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m udiskie dunst cmake xbindkeys
 
-sudo pacman -S --noconfirm discord arandr evince gvfs gimp libreoffice htop cmatrix neofetch openssh firefox virtualbox virtualbox-guest-iso vim yarn npm
+sudo pacman -S --noconfirm discord arandr arc-gtk-theme evince gvfs gimp libreoffice htop cmatrix neofetch openssh firefox vim yarn npm
 
 sudo systemctl enable lightdm.service
 
@@ -88,12 +88,6 @@ if ! pacman -Qs xcursor-openzone > /dev/null ; then
 	git clone https://aur.archlinux.org/xcursor-openzone.git && cd xcursor-openzone/
 	makepkg -sri --noconfirm
 fi
-####################################################################
-
-################## GTK theme #######################################
-	cd $HOME/.bin/
-	git clone https://github.com/ddnexus/equilux-theme.git && cd equilux-theme/
-	sudo ./install.sh
 ####################################################################
 
 ################## Lock screen program #############################

@@ -1,5 +1,5 @@
 [global]
-    font = Hermit 10
+    font = Hermit 11
 
     # Allow a small subset of html markup:
     #   <b>bold</b>
@@ -80,7 +80,7 @@
     # for longer than idle_threshold seconds.
     # Set to 0 to disable.
     # default 120
-    idle_threshold = 10
+    idle_threshold = 0
 
     # Which monitor should the notifications be displayed on.
     monitor = 0
@@ -152,7 +152,7 @@
 
 [frame]
     width = 1
-    color = "#1f222d"
+    color = "#262727"
 
 [shortcuts]
 
@@ -177,17 +177,17 @@
     context = ctrl+mod1+c
 
 [urgency_low]
-    background = "#2f343f"
-    foreground = "#f3f4f5"
+    background = "#232731"
+    foreground = "#d1eaff"
     timeout = 10
 
 [urgency_normal]
-    background = "#2f343f"
-    foreground = "#f3f4f5"
+    background = "#232731"
+    foreground = "#d1eaff"
     timeout = 10
 
 [urgency_critical]
-    background = "#2f343f"
-    foreground = "#f3f4f5"
+    background = "#232731"
+    foreground = "#d1eaff"
     timeout = 0
 
