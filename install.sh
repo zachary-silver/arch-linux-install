@@ -45,6 +45,14 @@ sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
 sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
 sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures/
 
+cd $HOME/.bin/
+git clone https://github.com/ZmanSilver/silver-dwm.git && cd silver-dwm/
+make && sudo make install && make clean && cd $srcdir/
+
+cd $HOME/.bin/
+git clone https://github.com/ZmanSilver/silver-st.git && cd silver-st/
+make && sudo make install && make clean && cd $srcdir/
+
 if ! pacman -Qs silver-dmenu > /dev/null ; then
 	cp -r silver-dmenu/ $HOME/.bin/
 	cd $HOME/.bin/silver-dmenu/ && makepkg -sri --noconfirm && cd $srcdir/
@@ -55,28 +63,11 @@ if ! pacman -Qs silver-surf > /dev/null ; then
 	cd $HOME/.bin/silver-surf/ && makepkg -sri --noconfirm && cd $srcdir/
 fi
 
-if ! pacman -Qs silver-st > /dev/null ; then
-	cp -r silver-st/ $HOME/.bin/
-	cd $HOME/.bin/silver-st/ && makepkg -sri --noconfirm && cd $srcdir/
-fi
-
-if ! pacman -Qs silver-dwm > /dev/null ; then
-	cp -r silver-dwm/ $HOME/.bin/
-	cd $HOME/.bin/silver-dwm/ && makepkg -sri --noconfirm && cd $srcdir/
-fi
-
 ################## Custom Scripts ##################################
 git clone https://github.com/ZmanSilver/scripts.git
 mv scripts/ $HOME/.scripts
-cd $HOME/.scripts/dwmstatus/ && make && make clean && cd $srcdir/
-####################################################################
-
-################## Google Play Music Desktop Player ################
-if ! pacman -Qs gpmdp > /dev/null ; then
-	cd $HOME/.bin/
-	git clone https://aur.archlinux.org/gpmdp.git && cd gpmdp/
-	makepkg -sri --noconfirm
-fi
+git clone https://github.com/ZmanSilver/dwmstatus.git
+cd dwmstatus/ && make && make clean && mv dwmstatus $HOME/.scripts/ && cd ../
 ####################################################################
 
 ################## Cursor theme ####################################
