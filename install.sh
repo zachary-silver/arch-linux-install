@@ -17,9 +17,9 @@ if [ laptop = "TRUE" ]; then
 	sudo pacman -S --noconfirm acpi acpilight
 fi
 
-sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop picom ttf-font-awesome alsa-utils pulseaudio-alsa pulsemixer openjdk8-src imagemagick xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m udiskie dunst cmake xbindkeys
+sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop picom ttf-font-awesome alsa-utils xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m udiskie dunst cmake xbindkeys
 
-sudo pacman -S --noconfirm discord arandr arc-gtk-theme evince gvfs gimp libreoffice htop cmatrix neofetch openssh firefox vim yarn npm
+sudo pacman -S --noconfirm discord arandr arc-gtk-theme evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick
 
 sudo systemctl enable lightdm.service
 
