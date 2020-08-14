@@ -19,7 +19,7 @@ fi
 
 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl wget picom ttf-font-awesome alsa-utils xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m udiskie dunst cmake xbindkeys
 
-sudo pacman -S --noconfirm discord arandr arc-gtk-theme evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick
+sudo pacman -S --noconfirm discord arandr arc-gtk-theme evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rust rustup rust-docs
 
 sudo systemctl enable lightdm.service
 
@@ -45,23 +45,29 @@ sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
 sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
 sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures/
 
+################## silver-dwm ######################################
 cd $HOME/.bin/
 git clone https://github.com/ZmanSilver/silver-dwm.git && cd silver-dwm/
 make && sudo make install && make clean && cd $srcdir/
+####################################################################
 
+################## silver-st #######################################
 cd $HOME/.bin/
 git clone https://github.com/ZmanSilver/silver-st.git && cd silver-st/
 make && sudo make install && make clean && cd $srcdir/
+####################################################################
 
-if ! pacman -Qs silver-dmenu > /dev/null ; then
-	cp -r silver-dmenu/ $HOME/.bin/
-	cd $HOME/.bin/silver-dmenu/ && makepkg -sri --noconfirm && cd $srcdir/
-fi
+################## spotifyd ########################################
+cd $HOME/.bin/
+git clone https://github.com/Spotifyd/spotifyd.git && cd spotifyd/
+cargo install spotifyd --locked && cd $srcdir/
+####################################################################
 
-if ! pacman -Qs silver-surf > /dev/null ; then
-	cp -r silver-surf/ $HOME/.bin/
-	cd $HOME/.bin/silver-surf/ && makepkg -sri --noconfirm && cd $srcdir/
-fi
+################## spotify-tui #####################################
+cd $HOME/.bin/
+git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
+makepkg -sri && cd $srcdir/
+####################################################################
 
 ################## Custom Scripts ##################################
 git clone https://github.com/ZmanSilver/scripts.git
@@ -97,7 +103,7 @@ if ! pacman -Qs cli-visualizer > /dev/null ; then
 fi
 ####################################################################
 
-################## Vim plugin manager ####################
+################## Vim plugin manager ##############################
 if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
 	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
 	vim +PluginInstall +qall
@@ -110,7 +116,7 @@ if [ -d ~/.vim/bundle/YouCompleteMe ]; then
 fi
 ####################################################################
 
-################## Vim code formatter plugin ######################
+################## Vim code formatter plugin #######################
 if [ -d ~/.vim/bundle/vim-prettier ]; then
 	cd $HOME/.vim/bundle/vim-prettier/ && yarn install
 fi
