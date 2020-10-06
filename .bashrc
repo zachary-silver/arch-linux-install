@@ -118,7 +118,7 @@ fi
 
 set -o vi
 
-alias python='python3.7'
+alias python='python3.8'
 
 PATH=/usr/local/bin:/usr/bin:/bin
 PATH=$HOME/.scripts:$PATH
@@ -127,6 +127,39 @@ EDITOR=vim
 VISUAL=vim
 PAGER=less
 
-PS1='[\[\033[01;32m\]\[\033[00m\]\[\033[01;34m\]\w\[\033[00m\]] '
+TESSDATA_PREFIX="$HOME/Projects/tesseract/tessdata"
 
-export PATH EDITOR VISUAL PAGER
+NAME='\u'
+HOST_NAME='\h'
+GREEN='\[\033[01;32m\]'
+BLUE='\[\033[01;34m\]'
+WHITE='\[\033[00m\]'
+ORANGE='\[\033[01;31m\]'
+
+set_prompt () {
+    local dir="/$(basename $(dirname $(pwd)))/$(basename $(pwd))"
+    local name=${HOME#*\/}
+    name=${name#*\/}
+
+    if [[ "${dir::5}" == "/home" ]]
+    then
+        dir="~"
+    elif [[ "${dir%/*}" == "/${name}" ]]; then
+        dir="~/${dir##*/}"
+    fi
+
+    if [[ "${dir::1}" != "~" ]]; then
+        dir="..$dir"
+    fi
+
+
+    if [[ "${HOME}" == "/root" ]]; then
+        PS1="[${ORANGE}${NAME}${GREEN}@${HOST_NAME} ${BLUE}${dir}${WHITE}] "
+    else
+        PS1="[${GREEN}${NAME}@${HOST_NAME} ${BLUE}${dir}${WHITE}] "
+    fi
+}
+
+PROMPT_COMMAND=set_prompt
+
+export PATH EDITOR VISUAL PAGER TESSDATA_PREFIX
