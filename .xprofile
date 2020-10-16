@@ -1,5 +1,5 @@
 feh --bg-scale --no-fehbg $HOME/Pictures/desktop_bg.jpg
 $HOME/.scripts/dwmstatus &
-picom --shadow-radius=25 --shadow-offset-x=-15 --shadow-offset-y=-15 --no-vsync &
+picom --no-vsync &
 xbindkeys &
 udiskie &
