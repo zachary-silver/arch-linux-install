@@ -1,4 +1,5 @@
 feh --bg-scale --no-fehbg $HOME/Pictures/desktop_bg.jpg
+systemctl --user start pulseaudio
 $HOME/.scripts/dwmstatus &
 picom --no-vsync &
 xbindkeys &
