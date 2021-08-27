@@ -33,7 +33,7 @@ cp .bashrc $HOME/
 sudo mkdir /etc/lightdm
 sudo mkdir /media
 mkdir $HOME/Pictures
-mkdir $HOME/.bin
+mkdir $HOME/Programs
 mkdir $HOME/.vim
 mkdir $HOME/.vim/.swap
 mkdir $HOME/.vim/.backup
@@ -46,25 +46,25 @@ sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
 sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures/
 
 ################## silver-dwm ######################################
-cd $HOME/.bin/
+cd $HOME/Programs/
 git clone https://github.com/ZmanSilver/silver-dwm.git && cd silver-dwm/
 make && sudo make install && make clean && cd $srcdir/
 ####################################################################
 
 ################## silver-st #######################################
-cd $HOME/.bin/
+cd $HOME/Programs/
 git clone https://github.com/ZmanSilver/silver-st.git && cd silver-st/
 make && sudo make install && make clean && cd $srcdir/
 ####################################################################
 
 ################## spotifyd ########################################
-cd $HOME/.bin/
+cd $HOME/Programs/
 git clone https://github.com/Spotifyd/spotifyd.git && cd spotifyd/
 cargo install spotifyd --locked && cd $srcdir/
 ####################################################################
 
 ################## spotify-tui #####################################
-cd $HOME/.bin/
+cd $HOME/Programs/
 git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
 makepkg -sri && cd $srcdir/
 ####################################################################
@@ -78,10 +78,10 @@ cd dwmstatus/ && make && make clean && mv dwmstatus $HOME/.scripts/ && cd ../
 
 ################## Cursor theme ####################################
 if ! pacman -Qs xcursor-openzone > /dev/null ; then
-	cd $HOME/.bin/
+	cd $HOME/Programs/
 	git clone https://aur.archlinux.org/icon-slicer.git && cd icon-slicer/
 	makepkg -sri --noconfirm
-	cd $HOME/.bin/
+	cd $HOME/Programs/
 	git clone https://aur.archlinux.org/xcursor-openzone.git && cd xcursor-openzone/
 	makepkg -sri --noconfirm
 fi
@@ -89,7 +89,7 @@ fi
 
 ################## Lock screen program #############################
 if ! pacman -Qs i3lock-color > /dev/null ; then
-	cd $HOME/.bin/
+	cd $HOME/Programs/
 	git clone https://aur.archlinux.org/i3lock-color.git && cd i3lock-color/
 	makepkg -sri --noconfirm
 fi
@@ -97,7 +97,7 @@ fi
 
 ################## Command line visualizer #########################
 if ! pacman -Qs cli-visualizer > /dev/null ; then
-	cd $HOME/.bin/
+	cd $HOME/Programs/
 	git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/
 	makepkg -sri --noconfirm
 fi
@@ -123,7 +123,7 @@ fi
 ####################################################################
 
 ################## Hermit font by pcaro90 ##########################
-cd $HOME/.bin/
+cd $HOME/Programs/
 git clone https://github.com/pcaro90/hermit.git && cd hermit/packages/
 gzip -d otf-hermit-2.0.tar.gz && tar xf otf-hermit-2.0.tar
 sudo cp *.otf /usr/share/fonts/OTF/

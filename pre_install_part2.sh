@@ -9,7 +9,7 @@ CPU=amd # for microcode package. ie. amd-ucode or intel-ucode
 
 ln -sf /usr/share/zoneinfo/${ZONE}/${CITY} /etc/localtime
 hwclock --systohc
-sed -i "s/^#${LOCALE}/en_US/g" /etc/locale.gen
+sed -i "s/^#${LOCALE}/${LOCALE}/g" /etc/locale.gen
 locale-gen
 echo "LANG=${LOCALE}.UTF-8" > /etc/locale.conf
 echo "${HOSTNAME}" > /etc/hostname
