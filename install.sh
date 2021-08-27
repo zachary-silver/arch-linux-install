@@ -32,6 +32,7 @@ cp .bashrc $HOME/
 
 sudo mkdir /etc/lightdm
 sudo mkdir /media
+sudo mkdir /usr/share/xsessions
 mkdir $HOME/Pictures
 mkdir $HOME/Programs
 mkdir $HOME/.vim
@@ -43,6 +44,7 @@ sudo ln -s /run/media/$USER /media/
 
 sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
 sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
+sudo cp ./usr/share/xsessions/* /usr/share/xsessions/
 sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures/
 
 ################## silver-dwm ######################################
@@ -126,6 +128,7 @@ fi
 cd $HOME/Programs/
 git clone https://github.com/pcaro90/hermit.git && cd hermit/packages/
 gzip -d otf-hermit-2.0.tar.gz && tar xf otf-hermit-2.0.tar
+sudo mkdir /usr/share/fonts/OTF
 sudo cp *.otf /usr/share/fonts/OTF/
 ####################################################################
 
