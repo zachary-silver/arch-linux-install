@@ -24,6 +24,6 @@ echo -e "default \tarch.conf\ntimeout \t2\nconsole-mode \tmax" > /boot/loader/lo
 
 PARTUUID=$(blkid | grep "^/dev/${DRIVE}3" | tr ' ' '\n' | tail -n1)
 
-echo -e "title \tArch Linux\nlinux \t/vmlinuz-linux\ninitrd \t/${CPU}-ucode.img\ninitrd \tinitrd \tinitramfs-linux.img\noptions root=LABEL=${PARTUUID} rw" > /boot/loader/entries/arch.conf
+echo -e "title \tArch Linux\nlinux \t/vmlinuz-linux\ninitrd \t/${CPU}-ucode.img\ninitrd \tinitrd \tinitramfs-linux.img\noptions root=${PARTUUID} rw" > /boot/loader/entries/arch.conf
 
-echo -e "\n\nnow reboot into your new arch linux installation and run the final setup script!"
+echo -e "\n\nnow run 'exit' and then run 'reboot' to enter your new arch linux installation and run the final setup script!\n\n"

@@ -23,4 +23,4 @@ genfstab -U /mnt >> /mnt/etc/fstab
 
 cp /pre_install_part2.sh /mnt
 
-echo -e "\n\nnow run 'arch-chroot /mnt' and then run 'bash /pre_install_part2.sh'!"
+echo -e "\n\nnow run 'arch-chroot /mnt' and then run 'bash /pre_install_part2.sh'!\n\n"
