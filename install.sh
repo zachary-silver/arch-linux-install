@@ -59,6 +59,11 @@ git clone https://github.com/ZmanSilver/silver-st.git && cd silver-st/
 make && sudo make install && make clean && cd $srcdir/
 ####################################################################
 
+################## silver-dmenu #######################################
+cd silver-dmenu/
+makepkg -sri --noconfirm
+####################################################################
+
 ################## spotifyd ########################################
 cd $HOME/Programs/
 git clone https://github.com/Spotifyd/spotifyd.git && cd spotifyd/
