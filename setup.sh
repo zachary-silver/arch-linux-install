@@ -29,6 +29,7 @@ cp .xbindkeysrc $HOME/
 cp -r .vim/ $HOME/
 cp .vimrc $HOME/
 cp .bashrc $HOME/
+cp -r .icons $HOME/
 
 sudo mkdir /etc/lightdm
 sudo mkdir /media
