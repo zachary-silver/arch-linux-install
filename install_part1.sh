@@ -15,10 +15,12 @@ echo ""
 echo "Now, enter the device's identifier that you chose (ie. sda, sdb, sdc...):"
 
 read DEVICE
-while [ ! -f "/dev/${DEVICE}" ];
+output=$(ls /dev/${DEVICE} 2>/dev/null)
+while [[ -z "$DEVICE" || -z "$output" ]];
 do
     echo "Invalid identifier. Please enter again:"
     read DEVICE
+    output=$(ls /dev/${DEVICE} 2>/dev/null)
 done
 
 mkfs.fat -F32 /dev/${DEVICE}1
