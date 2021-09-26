@@ -38,6 +38,6 @@ genfstab -U /mnt >> /mnt/etc/fstab
 curl -sL ${INSTALL_PART2_URL} -o /mnt/install_part2.sh
 curl -sL ${INSTALL_PART3_URL} -o /mnt/install_part3.sh
 
-sed -i "s/^DEVICE/DEVICE=${DEVICE}/g"
+sed -i "s/^DEVICE/DEVICE=${DEVICE}/g" /mnt/install_part2.sh
 
 echo -e "\n\nNow run 'arch-chroot /mnt' and then run 'bash /install_part2.sh'!\n\n"
