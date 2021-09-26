@@ -1,13 +1,3 @@
-#!/bin/bash
-
-USER=zack
-SHELL=bash
-
-sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
-
-useradd -m -G wheel -s /bin/${SHELL} ${USER}
-passwd ${USER}
-
 # If you want to add additional window managers as options or specify a specific one
 # to launch from lightDM, a desktop entry needs to be made for them at:
 #
