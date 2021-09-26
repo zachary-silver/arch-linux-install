@@ -95,17 +95,16 @@ autocmd FileType python,c,javascript,css,sh,rs set tw=80
 " autocmd FileType python,c,javascript,css,sh,rs set colorcolumn=81
 
 " Don't automatically wrap text when typing
-"autocmd FileType java,python,c set fo-=t
-"set fo-=t
+" autocmd FileType sh,html,css,javascript,java,python,c,rust set fo-=t
+set fo-=t
 
 " Don't automatically wrap text upon opening file
-autocmd FileType sh,html,css,js,java,python,c set nowrap
+" autocmd FileType sh,html,css,javascript,java,python,c,rust set nowrap
 set nowrap
 
-" Tabs/Spacing
+" Tabs and Spacing
 autocmd FileType java,html,css,javascript,typescript set tabstop=2 expandtab shiftwidth=2 softtabstop=2
-autocmd FileType rs set tabstop=4 expandtab shiftwidth=4 softtabstop=4
-autocmd FileType c,python set tabstop=4 expandtab shiftwidth=4 softtabstop=4
+autocmd FileType c,python,rs,sh set tabstop=4 expandtab shiftwidth=4 softtabstop=4
 set backspace=indent,eol,start
 
 " Toggles autoindentation so pasting text doesn't get malformed

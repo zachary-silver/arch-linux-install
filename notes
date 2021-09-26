@@ -15,3 +15,7 @@
 # to get a result for width, height, and refresh rate respectively
 #
 # Example 10-monitor.conf file provided to be placed in /etc/X11/xorg.conf.d/
+#
+# If you want to enable bluetooth and pair devices, take a look at:
+#
+# https://wiki.archlinux.org/title/bluetooth
