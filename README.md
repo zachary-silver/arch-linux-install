@@ -10,6 +10,7 @@ Scripts and config files necessary to install my personal Arch Linux environment
 
 ## Instructions
 
+-	In order to get the install scripts run 'curl -sL ${URL_TO_RAW_FILE_ON_GITHUB} -o ${FILE_DESTINATION}' from the installation media.
 -	Make sure the 'base-devel' and 'git' packages are installed.
 
 -	git clone https://github.com/ZmanSilver/Arch_Linux_Install.git
