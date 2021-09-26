@@ -1,25 +1,26 @@
 #!/bin/bash
 
 srcdir=$(pwd)
-laptop="FALSE"
 
+PS3="Enter 1 or 2) "
 echo "Are you on a laptop?"
-select yn in "Yes" "No"; do
-    case $yn in
-        Yes ) laptop="TRUE"; break;;
-        No ) break;;
+select option in "Yes" "No"; do
+    case $option in
+        Yes)
+	        sudo pacman -S --noconfirm acpi acpilight
+            break
+            ;;
+        No)
+            break
+            ;;
     esac
 done
 
 sudo pacman -Syu
 
-if [ laptop = "TRUE" ]; then
-	sudo pacman -S --noconfirm acpi acpilight
-fi
+sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa pulsemixer xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings ranger w3m udiskie dunst cmake xbindkeys lxappearance arc-gtk-theme
 
-sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl wget picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa pulsemixer xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings lxappearance ranger w3m udiskie dunst cmake xbindkeys
-
-sudo pacman -S --noconfirm discord arandr arc-gtk-theme evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rust rustup rust-docs
+sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rust rustup rust-docs
 
 sudo systemctl enable lightdm.service
 
@@ -68,13 +69,6 @@ makepkg -sri --noconfirm
 cd $srcdir/
 ####################################################################
 
-################## spotifyd ########################################
-cd $HOME/Programs/
-git clone https://github.com/Spotifyd/spotifyd.git && cd spotifyd/
-cargo install spotifyd --locked
-cd $srcdir/
-####################################################################
-
 ################## spotify-tui #####################################
 cd $HOME/Programs/
 git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
@@ -116,9 +110,11 @@ fi
 
 ################## Command line visualizer #########################
 if ! pacman -Qs cli-visualizer > /dev/null ; then
+	sudo pacman -S --noconfirm ncurses fftw cmake
 	cd $HOME/Programs/
-	git clone https://aur.archlinux.org/cli-visualizer.git && cd cli-visualizer/
-	makepkg -sri --noconfirm
+	git clone https://github.com/dpayne/cli-visualizer.git && cd cli-visualizer/
+	./install.sh
+	cp ./.config/vis/config $HOME/.config/vis/config
 	cd $srcdir/
 fi
 ####################################################################
