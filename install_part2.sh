@@ -23,8 +23,7 @@ then
 	LOCALE=${DEFAULT_LOCALE}
 fi
 
-echo "Please enter your preferred time zone from the options below:"
-echo "or press enter to accept the default (${DEFAULT_ZONE}):"
+echo "Please enter your preferred time zone or press enter to accept the default (${DEFAULT_ZONE}):"
 ls /usr/share/zoneinfo/
 
 read ZONE
@@ -33,12 +32,13 @@ then
 	ZONE=${DEFAULT_ZONE}
 fi
 
-echo "Please enter your preferred city from the options below:"
 if [ "${ZONE}" == "${DEFAULT_ZONE}" ];
 then
-	echo "or press enter to accept the default (${DEFAULT_CITY}):"
+	echo "Please enter your preferred city or press enter to accept the default (${DEFAULT_CITY}):"
+else
+    echo "Please enter your preferred city:"
 fi
-ls /usr/share/zoneinfo/
+ls /usr/share/zoneinfo/${ZONE}
 
 read CITY
 if [ -z "${CITY}" -a "${ZONE}" == "${DEFAULT_ZONE}" ];
@@ -52,6 +52,7 @@ do
 	read CITY
 done
 
+PS3="Choose 1 or 2 ) "
 echo "Please select which cpu your machine is using:"
 while [ -z "${CPU}" ];
 do
@@ -59,9 +60,11 @@ do
         case $cpu in
             amd)
                 CPU=amd
+                break
                 ;;
             intel)
                 CPU=intel
+                break
                 ;;
             *)
                 echo "Invalid option. Please try again"
