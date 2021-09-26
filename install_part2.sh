@@ -52,7 +52,7 @@ do
 	read CITY
 done
 
-PS3="Choose 1 or 2) "
+PS3="Enter 1 or 2) "
 echo "Please select which cpu your machine is using:"
 while [ -z "${CPU}" ];
 do
@@ -83,7 +83,7 @@ echo -e "127.0.0.1 \tlocalhost\n::1 \t\tlocalhost\n127.0.1.1 \t${HOSTNAME}.local
 
 passwd
 
-pacman -S --noconfirm ${CPU}-ucode bash-completion vim networkmanager man-db man-pages git
+pacman -S --noconfirm ${CPU}-ucode bash-completion vim networkmanager dhcpcd man-db man-pages git
 bootctl install
 
 echo -e "default \tarch.conf\ntimeout \t2\nconsole-mode \tmax" > /boot/loader/loader.conf
