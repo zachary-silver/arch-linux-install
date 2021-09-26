@@ -52,7 +52,7 @@ do
 	read CITY
 done
 
-PS3="Choose 1 or 2 ) "
+PS3="Choose 1 or 2) "
 echo "Please select which cpu your machine is using:"
 while [ -z "${CPU}" ];
 do
