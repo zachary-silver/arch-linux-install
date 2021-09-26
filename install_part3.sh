@@ -2,6 +2,7 @@
 
 DEFAULT_SHELL=bash
 INTERNET_CONNECTION_TYPE=''
+INSTALL_GITHUB_REPO=https://github.com/zachary-silver/Arch_Linux_Install.git
 
 echo "Please enter the name of the user account you'd like to create:"
 read USER
@@ -51,4 +52,6 @@ sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /e
 useradd -m -G wheel -s /bin/${SHELL} ${USER}
 passwd ${USER}
 
-echo -e "\n\nNow exit from root and login to your newly created user!\n\n"
+git clone ${INSTALL_GITHUB_REPO} /home/${USER}/Arch_Linux_Install
+
+echo -e "\n\nNow exit from root, login to your newly created user, and run 'bash setup.sh' inside the Arch_Linux_Install directory!\n\n"
