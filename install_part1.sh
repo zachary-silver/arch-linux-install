@@ -1,6 +1,7 @@
 #!/bin/bash
 
 INSTALL_PART2_URL='https://raw.githubusercontent.com/zachary-silver/Arch_Linux_Install/master/install_part2.sh'
+INSTALL_PART3_URL='https://raw.githubusercontent.com/zachary-silver/Arch_Linux_Install/master/install_part3.sh'
 
 echo "Before executing the rest of this script, run 'fdisk -l' to find the device"
 echo "you'd like to partition and then run 'fdisk /dev/sdX' to start partitioning"
@@ -33,6 +34,7 @@ pacstrap /mnt base base-devel linux linux-firmware
 genfstab -U /mnt >> /mnt/etc/fstab
 
 curl -sL ${INSTALL_PART2_URL} -o /mnt/install_part2.sh
+curl -sL ${INSTALL_PART3_URL} -o /mnt/install_part3.sh
 
 sed -i "s/^DEVICE/DEVICE=${DEVICE}/g"
 

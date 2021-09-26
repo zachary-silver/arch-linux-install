@@ -89,4 +89,4 @@ PARTUUID=$(blkid | grep "^/dev/${DEVICE}3" | tr ' ' '\n' | tail -n1)
 
 echo -e "title \tArch Linux\nlinux \t/vmlinuz-linux\ninitrd \t/${CPU}-ucode.img\ninitrd \tinitramfs-linux.img\noptions root=${PARTUUID} rw" > /boot/loader/entries/arch.conf
 
-echo -e "\n\nNow run 'exit' and then run 'reboot' to enter your new arch linux installation and run install_part3.sh!\n\n"
+echo -e "\n\nNow run 'exit' and then run 'reboot' to enter your new arch linux installation and run 'bash /install_part3.sh'!\n\n"
