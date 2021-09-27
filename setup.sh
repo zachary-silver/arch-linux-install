@@ -2,6 +2,8 @@
 
 srcdir=$(pwd)
 
+sudo pacman -Syu
+
 PS3="Enter 1 or 2) "
 echo "Are you on a laptop?"
 select option in "Yes" "No"; do
@@ -15,8 +17,6 @@ select option in "Yes" "No"; do
             ;;
     esac
 done
-
-sudo pacman -Syu
 
 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings ranger w3m dunst xbindkeys arc-gtk-theme
 
