@@ -44,7 +44,7 @@ mkdir $HOME/.vim/.undo
 
 sudo ln -s /run/media/$USER /media/
 
-sudo cp ./etc/lightdm/lightdm-gtk-greeter.conf /etc/lightdm/
+sudo cp ./etc/lightdm/* /etc/lightdm/
 sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
 sudo cp ./usr/share/xsessions/* /usr/share/xsessions/
 sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures/
