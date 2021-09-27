@@ -16,6 +16,17 @@
 #
 # Example 10-monitor.conf file provided to be placed in /etc/X11/xorg.conf.d/
 #
+# Take a look at /var/log/Xorg.0.log and search for 'Modeline' to see all the
+# Modelines natively supported by your monitor and use those if generating your
+# own isn't yielding the expected results.
+#
+# Also, 01-modesetting.conf provided to be placed in /etc/X11/xorg.conf.d/ which will
+# use the generic 'modesetting' driver instead of nouveau, amd, intel, etc. and potentially
+# fix issues like refresh rate not actually being used even when xrandr claims it is.
+# More info can be found here:
+#
+# https://bbs.archlinux.org/viewtopic.php?id=256663
+#
 # If you want to enable bluetooth and pair devices, take a look at:
 #
 # https://wiki.archlinux.org/title/bluetooth
