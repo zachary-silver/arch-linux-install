@@ -18,9 +18,9 @@ done
 
 sudo pacman -Syu
 
-sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa pulsemixer xcb-util-xrm scrot feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings ranger w3m udiskie dunst cmake xbindkeys lxappearance arc-gtk-theme
+sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings ranger w3m dunst xbindkeys arc-gtk-theme
 
-sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rust rustup rust-docs
+sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rust rustup rust-docs scrot udiskie pulsemixer
 
 sudo systemctl enable lightdm.service
 
@@ -51,14 +51,14 @@ sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures/
 
 ################## silver-dwm ######################################
 cd $HOME/Programs/
-git clone https://github.com/ZmanSilver/silver-dwm.git && cd silver-dwm/
+git clone https://github.com/zachary-silver/silver-dwm.git && cd silver-dwm/
 make && sudo make install && make clean
 cd $srcdir/
 ####################################################################
 
 ################## silver-st #######################################
 cd $HOME/Programs/
-git clone https://github.com/ZmanSilver/silver-st.git && cd silver-st/
+git clone https://github.com/zachary-silver/silver-st.git && cd silver-st/
 make && sudo make install && make clean
 cd $srcdir/
 ####################################################################
@@ -77,13 +77,13 @@ cd $srcdir/
 ####################################################################
 
 ################## Custom Scripts ##################################
-git clone https://github.com/ZmanSilver/scripts.git
+git clone https://github.com/zachary-silver/scripts.git
 mv scripts/ $HOME/.scripts
 ####################################################################
 
 ################## dwmstatus #######################################
 cd $HOME/Programs/
-git clone https://github.com/ZmanSilver/dwmstatus.git
+git clone https://github.com/zachary-silver/dwmstatus.git
 cd dwmstatus/ && make && make clean && mv dwmstatus $HOME/.scripts/ && cd $srcdir/
 ####################################################################
 
