@@ -18,6 +18,19 @@ select option in "Yes" "No"; do
     esac
 done
 
+echo "Would you like to enable Bluetooth?"
+select option in "Yes" "No"; do
+    case $option in
+        Yes)
+            sudo pacman -S --noconfirm bluez bluez-utils && sudo systemctl start bluetooth.service && sudo systemctl enable bluetooth.service
+            break
+            ;;
+        No)
+            break
+            ;;
+    esac
+done
+
 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings ranger w3m dunst xbindkeys arc-gtk-theme
 
 sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rust rustup rust-docs scrot udiskie pulsemixer
@@ -72,7 +85,7 @@ cd $srcdir/
 ################## spotify-tui #####################################
 cd $HOME/Programs/
 git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
-makepkg -sri
+rustup install stable && rustup default stable && makepkg -sri
 cd $srcdir/
 ####################################################################
 
@@ -114,7 +127,7 @@ if ! pacman -Qs cli-visualizer > /dev/null ; then
 	cd $HOME/Programs/
 	git clone https://github.com/dpayne/cli-visualizer.git && cd cli-visualizer/
 	./install.sh
-	cp ./.config/vis/config $HOME/.config/vis/config
+	cp $srcdir/.config/vis/config $HOME/.config/vis/config
 	cd $srcdir/
 fi
 ####################################################################
