@@ -30,3 +30,10 @@
 # If you want to enable bluetooth and pair devices, take a look at:
 #
 # https://wiki.archlinux.org/title/bluetooth
+#
+# IMPORTANT: LightDM may start up before the kernel module has initialized
+# the GPU, leading to a black screen with a blinking cursor at startup. If this
+# happens, one solution is to setup early KMS start with the required module for
+# your video driver. More info can be found here:
+#
+# https://wiki.archlinux.org/title/Kernel_mode_setting#Early_KMS_start
