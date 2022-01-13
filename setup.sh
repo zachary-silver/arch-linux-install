@@ -85,7 +85,7 @@ cd $srcdir/
 ################## spotify-tui #####################################
 cd $HOME/Programs/
 git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
-rustup install stable && rustup default stable && makepkg -sri
+rustup install stable && makepkg -sri
 cd $srcdir/
 ####################################################################
 
