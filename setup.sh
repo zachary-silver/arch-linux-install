@@ -33,7 +33,7 @@ done
 
 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings ranger w3m dunst xbindkeys arc-gtk-theme
 
-sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rust rustup rust-docs scrot udiskie pulsemixer
+sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rustup scrot udiskie pulsemixer
 
 sudo systemctl enable lightdm.service
 

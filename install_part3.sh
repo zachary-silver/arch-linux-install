@@ -33,7 +33,8 @@ do
         case $connection in
             cable)
                 INTERNET_CONNECTION_TYPE=cable
-                systemctl start dhcpcd.service && systemctl enable dhcpcd.service
+                systemctl enable dhcpcd.service && systemctl start dhcpcd.service
+		sleep 3 # give dhcpcd time to start before moving on
                 break
                 ;;
             wifi)
