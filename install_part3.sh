@@ -1,7 +1,6 @@
 #!/bin/bash
 
 DEFAULT_SHELL=bash
-INTERNET_CONNECTION_TYPE=''
 INSTALL_GITHUB_REPO=https://github.com/zachary-silver/Arch_Linux_Install.git
 
 echo "Please enter the name of the user account you'd like to create:"
@@ -25,20 +24,28 @@ else
     done
 fi
 
+sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
+
+useradd -m -G wheel -s /bin/${SHELL} ${USER}
+passwd ${USER}
+
+GITHUB_CLONE_CMD="git clone ${INSTALL_GITHUB_REPO} /home/${USER}/Arch_Linux_Install"
+
 PS3="Enter 1 or 2) "
-echo "Please select if you are connected to the internet via cable or wifi:"
+echo "Please select if you are connected to the internet via ethernet or wifi:"
 while [ -z "${INTERNET_CONNECTION_TYPE}" ];
 do
-    select connection in cable wifi; do
+    select connection in ethernet wifi; do
         case $connection in
-            cable)
-                INTERNET_CONNECTION_TYPE=cable
+            ethernet)
                 systemctl enable dhcpcd.service && systemctl start dhcpcd.service
-		sleep 3 # give dhcpcd time to start before moving on
+                echo "Starting dhcpcd service..." && sleep 2 # give dhcpcd service time to setup
+                $(${GITHUB_CLONE_CMD})
                 break
                 ;;
             wifi)
-                INTERNET_CONNECTION_TYPE=wifi
+                systemctl enable NetworkManager.service && systemctl start NetworkManager.service
+                echo "Please use nmcli to connect to your network and then run: '${GITHUB_CLONE_CMD}'"
                 break
                 ;;
             *)
@@ -47,12 +54,5 @@ do
         esac
     done
 done
-
-sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
-
-useradd -m -G wheel -s /bin/${SHELL} ${USER}
-passwd ${USER}
-
-git clone ${INSTALL_GITHUB_REPO} /home/${USER}/Arch_Linux_Install
 
 echo -e "\n\nNow exit from root, login to your newly created user, and run 'bash setup.sh' inside the Arch_Linux_Install directory!\n\n"
