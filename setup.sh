@@ -96,12 +96,6 @@ make && sudo make install && make clean
 cd $srcdir/
 ####################################################################
 
-################## dwmstatus #######################################
-cd $HOME/projects/
-git clone https://github.com/zachary-silver/dwmstatus.git
-cd dwmstatus/rust && cargo build --release && mv target/release/dwmstatus $HOME/scripts/ && cd $srcdir/
-####################################################################
-
 ################## spotify-tui #####################################
 cd $HOME/programs/
 git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
@@ -111,6 +105,12 @@ cd $srcdir/
 
 ################## Custom Scripts ##################################
 git clone https://github.com/zachary-silver/scripts.git && mv scripts/ $HOME/
+####################################################################
+
+################## dwmstatus #######################################
+cd $HOME/projects/
+git clone https://github.com/zachary-silver/dwmstatus.git
+cd dwmstatus/rust && cargo build --release && mv target/release/dwmstatus $HOME/scripts/ && cd $srcdir/
 ####################################################################
 
 ################## Cursor theme ####################################
