@@ -63,9 +63,8 @@ sudo cp ./usr/share/xsessions/* /usr/share/xsessions/
 sudo cp ./pictures/desktop_bg.jpg $HOME/pictures/
 
 ################## projects ######################################
-cd $HOME/projects/
-git clone https://github.com/zachary-silver/silver-dwm.git && cd silver-dwm/
-make && sudo make install && make clean
+cd $HOME/
+git clone https://github.com/zachary-silver/projects.git
 cd $srcdir/
 ####################################################################
 
