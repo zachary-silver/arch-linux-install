@@ -121,13 +121,13 @@ set -o vi
 alias python='python3.8'
 
 PATH=/usr/local/bin:/usr/bin:/bin
-PATH=$HOME/.scripts:$PATH
+PATH=$HOME/scripts:$PATH
 
 EDITOR=vim
 VISUAL=vim
 PAGER=less
 
-TESSDATA_PREFIX="$HOME/Projects/tesseract/tessdata"
+TESSDATA_PREFIX="$HOME/projects/tesseract/tessdata"
 
 NAME='\u'
 HOST_NAME='\h'

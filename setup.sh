@@ -48,8 +48,8 @@ cp -r .icons $HOME/
 sudo mkdir /etc/lightdm
 sudo mkdir /media
 sudo mkdir /usr/share/xsessions
-mkdir $HOME/Pictures
-mkdir $HOME/Programs
+mkdir $HOME/pictures
+mkdir $HOME/programs
 mkdir $HOME/.vim
 mkdir $HOME/.vim/.swap
 mkdir $HOME/.vim/.backup
@@ -60,52 +60,66 @@ sudo ln -s /run/media/$USER /media/
 sudo cp ./etc/lightdm/* /etc/lightdm/
 sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
 sudo cp ./usr/share/xsessions/* /usr/share/xsessions/
-sudo cp ./Pictures/desktop_bg.jpg $HOME/Pictures/
+sudo cp ./pictures/desktop_bg.jpg $HOME/pictures/
+
+################## projects ######################################
+cd $HOME/projects/
+git clone https://github.com/zachary-silver/silver-dwm.git && cd silver-dwm/
+make && sudo make install && make clean
+cd $srcdir/
+####################################################################
 
 ################## silver-dwm ######################################
-cd $HOME/Programs/
+cd $HOME/projects/
 git clone https://github.com/zachary-silver/silver-dwm.git && cd silver-dwm/
 make && sudo make install && make clean
 cd $srcdir/
 ####################################################################
 
 ################## silver-st #######################################
-cd $HOME/Programs/
+cd $HOME/projects/
 git clone https://github.com/zachary-silver/silver-st.git && cd silver-st/
 make && sudo make install && make clean
 cd $srcdir/
 ####################################################################
 
 ################## silver-dmenu ####################################
-cd silver-dmenu/
-makepkg -sri --noconfirm
+cd $HOME/projects/
+git clone https://github.com/zachary-silver/silver-dmenu.git && cd silver-dmenu/
+make && sudo make install && make clean
 cd $srcdir/
 ####################################################################
 
+################## silver-surf ####################################
+cd $HOME/projects/
+git clone https://github.com/zachary-silver/silver-surf.git && cd silver-surf/
+make && sudo make install && make clean
+cd $srcdir/
+####################################################################
+
+################## dwmstatus #######################################
+cd $HOME/projects/
+git clone https://github.com/zachary-silver/dwmstatus.git
+cd dwmstatus/rust && cargo build --release && mv target/release/dwmstatus $HOME/scripts/ && cd $srcdir/
+####################################################################
+
 ################## spotify-tui #####################################
-cd $HOME/Programs/
+cd $HOME/programs/
 git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
 rustup install stable && makepkg -sri
 cd $srcdir/
 ####################################################################
 
 ################## Custom Scripts ##################################
-git clone https://github.com/zachary-silver/scripts.git
-mv scripts/ $HOME/.scripts
-####################################################################
-
-################## dwmstatus #######################################
-cd $HOME/Programs/
-git clone https://github.com/zachary-silver/dwmstatus.git
-cd dwmstatus/ && make && make clean && mv dwmstatus $HOME/.scripts/ && cd $srcdir/
+git clone https://github.com/zachary-silver/scripts.git && mv scripts/ $HOME/
 ####################################################################
 
 ################## Cursor theme ####################################
 if ! pacman -Qs xcursor-openzone > /dev/null ; then
-	cd $HOME/Programs/
+	cd $HOME/programs/
 	git clone https://aur.archlinux.org/icon-slicer.git && cd icon-slicer/
 	makepkg -sri --noconfirm
-	cd $HOME/Programs/
+	cd $HOME/programs/
 	git clone https://aur.archlinux.org/xcursor-openzone.git && cd xcursor-openzone/
 	makepkg -sri --noconfirm
 	cd $srcdir/
@@ -114,7 +128,7 @@ fi
 
 ################## Lock screen program #############################
 if ! pacman -Qs i3lock-color > /dev/null ; then
-	cd $HOME/Programs/
+	cd $HOME/programs/
 	git clone https://aur.archlinux.org/i3lock-color.git && cd i3lock-color/
 	makepkg -sri --noconfirm
 	cd $srcdir/
@@ -124,7 +138,7 @@ fi
 ################## Command line visualizer #########################
 if ! pacman -Qs cli-visualizer > /dev/null ; then
 	sudo pacman -S --noconfirm ncurses fftw cmake
-	cd $HOME/Programs/
+	cd $HOME/programs/
 	git clone https://github.com/dpayne/cli-visualizer.git && cd cli-visualizer/
 	./install.sh
 	cp $srcdir/.config/vis/config $HOME/.config/vis/config
@@ -154,7 +168,7 @@ fi
 ####################################################################
 
 ################## Hermit font by pcaro90 ##########################
-cd $HOME/Programs/
+cd $HOME/programs/
 git clone https://github.com/pcaro90/hermit.git && cd hermit/packages/
 gzip -d otf-hermit-2.0.tar.gz && tar xf otf-hermit-2.0.tar
 sudo mkdir /usr/share/fonts/OTF
