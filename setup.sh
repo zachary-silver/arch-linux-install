@@ -37,12 +37,6 @@ sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop ne
 
 sudo systemctl enable lightdm.service
 
-cp -r .config/ $HOME/
-cp .xprofile $HOME/
-cp .xbindkeysrc $HOME/
-cp -r .vim/ $HOME/
-cp .vimrc $HOME/
-cp .bashrc $HOME/
 cp -r .icons $HOME/
 
 sudo mkdir /etc/lightdm
@@ -50,10 +44,6 @@ sudo mkdir /media
 sudo mkdir /usr/share/xsessions
 mkdir $HOME/pictures
 mkdir $HOME/programs
-mkdir $HOME/.vim
-mkdir $HOME/.vim/.swap
-mkdir $HOME/.vim/.backup
-mkdir $HOME/.vim/.undo
 
 sudo ln -s /run/media/$USER /media/
 
@@ -61,6 +51,13 @@ sudo cp ./etc/lightdm/* /etc/lightdm/
 sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
 sudo cp ./usr/share/xsessions/* /usr/share/xsessions/
 sudo cp ./pictures/desktop_bg.jpg $HOME/pictures/
+
+################## dotfiles ######################################
+cd $HOME/
+git clone https://github.com/zachary-silver/dotfiles.git
+cd dotfiles && rm README.md && stow -vSt ~ *
+cd $srcdir/
+####################################################################
 
 ################## projects ######################################
 cd $HOME/
