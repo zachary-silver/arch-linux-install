@@ -65,8 +65,8 @@ nvim +PlugInstall +qall
 
 ################## dotfiles ######################################
 cd $HOME/
-git clone https://github.com/zachary-silver/dotfiles.git
-cd dotfiles && rm README.md && stow -vSt ~ *
+git clone https://github.com/zachary-silver/dotfiles.git .dotfiles
+cd .dotfiles && rm README.md && stow -vSt ~ *
 cd $srcdir/
 ####################################################################
 
