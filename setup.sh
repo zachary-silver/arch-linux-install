@@ -33,7 +33,7 @@ done
 
 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings ranger w3m dunst xbindkeys arc-gtk-theme
 
-sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox vim yarn npm imagemagick rustup scrot udiskie pulsemixer
+sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox neovim yarn npm imagemagick rustup scrot udiskie pulsemixer
 
 sudo systemctl enable lightdm.service
 
@@ -51,6 +51,17 @@ sudo cp ./etc/lightdm/* /etc/lightdm/
 sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
 sudo cp ./usr/share/xsessions/* /usr/share/xsessions/
 sudo cp ./pictures/desktop_bg.jpg $HOME/pictures/
+
+################## neovim Setup ##################################
+sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
+       https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
+
+sudo pacman -S clangd
+sudo npm install -g typescript-language-server
+rustup update && rustup component add rls rust-analysis rust-src
+
+nvim +PlugInstall +qall
+##################################################################
 
 ################## dotfiles ######################################
 cd $HOME/
@@ -107,7 +118,8 @@ git clone https://github.com/zachary-silver/scripts.git && mv scripts/ $HOME/
 ################## dwmstatus #######################################
 cd $HOME/projects/
 git clone https://github.com/zachary-silver/dwmstatus.git
-cd dwmstatus/rust && cargo build --release && mv target/release/dwmstatus $HOME/scripts/ && cd $srcdir/
+cd dwmstatus/rust && cargo build --release && mv target/release/dwmstatus $HOME/scripts/
+cd $srcdir/
 ####################################################################
 
 ################## Cursor theme ####################################
@@ -138,27 +150,6 @@ if ! pacman -Qs cli-visualizer > /dev/null ; then
 	git clone https://github.com/dpayne/cli-visualizer.git && cd cli-visualizer/
 	./install.sh
 	cp $srcdir/.config/vis/config $HOME/.config/vis/config
-	cd $srcdir/
-fi
-####################################################################
-
-################## Vim plugin manager ##############################
-if [ ! -d ~/.vim/bundle/Vundle.vim ]; then
-	git clone https://github.com/VundleVim/Vundle.vim.git ~/.vim/bundle/Vundle.vim
-	vim +PluginInstall +qall
-fi
-####################################################################
-
-################## Vim code completion plugin ######################
-if [ -d ~/.vim/bundle/YouCompleteMe ]; then
-	cd $HOME/.vim/bundle/YouCompleteMe/ && python3 install.py
-	cd $srcdir/
-fi
-####################################################################
-
-################## Vim code formatter plugin #######################
-if [ -d ~/.vim/bundle/vim-prettier ]; then
-	cd $HOME/.vim/bundle/vim-prettier/ && yarn install
 	cd $srcdir/
 fi
 ####################################################################
