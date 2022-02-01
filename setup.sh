@@ -33,7 +33,7 @@ done
 
 sudo pacman -S --noconfirm xorg-server xorg-xinit xterm xorg-xrandr xorg-xsetroot xorg-xprop playerctl picom ttf-font-awesome alsa-utils pulseaudio pulseaudio-alsa feh lightdm lightdm-gtk-greeter lightdm-gtk-greeter-settings ranger w3m dunst xbindkeys arc-gtk-theme
 
-sudo pacman -S --noconfirm spotifyd discord evince gvfs gimp libreoffice htop neofetch openssh firefox neovim yarn npm imagemagick rustup scrot udiskie pulsemixer
+sudo pacman -S --noconfirm discord evince gvfs gimp libreoffice htop neofetch openssh firefox yarn npm imagemagick scrot udiskie pulsemixer
 
 sudo systemctl enable lightdm.service
 
@@ -52,23 +52,24 @@ sudo cp ./usr/share/pixmaps/* /usr/share/pixmaps/
 sudo cp ./usr/share/xsessions/* /usr/share/xsessions/
 sudo cp ./pictures/desktop_bg.jpg $HOME/pictures/
 
+################## dotfiles ######################################
+cd $HOME/
+sudo pacman -S --noconfirm stow
+git clone https://github.com/zachary-silver/dotfiles.git .dotfiles
+cd .dotfiles && rm README.md && stow -vSt ~ *
+cd $srcdir/
+####################################################################
+
 ################## neovim Setup ##################################
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-sudo pacman -S clangd
+sudo pacman -S --noconfirm neovim clang rustup
 sudo npm install -g typescript-language-server
 rustup update && rustup component add rls rust-analysis rust-src
 
 nvim +PlugInstall +qall
 ##################################################################
-
-################## dotfiles ######################################
-cd $HOME/
-git clone https://github.com/zachary-silver/dotfiles.git .dotfiles
-cd .dotfiles && rm README.md && stow -vSt ~ *
-cd $srcdir/
-####################################################################
 
 ################## projects ######################################
 cd $HOME/
@@ -106,6 +107,7 @@ cd $srcdir/
 
 ################## spotify-tui #####################################
 cd $HOME/programs/
+sudo pacman -S --noconfirm spotifyd
 git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
 rustup install stable && makepkg -sri
 cd $srcdir/
