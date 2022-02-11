@@ -64,7 +64,7 @@ cd $srcdir/
 sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.vim --create-dirs \
        https://raw.githubusercontent.com/junegunn/vim-plug/master/plug.vim'
 
-sudo pacman -S --noconfirm neovim clang rustup
+sudo pacman -S --noconfirm neovim clang rustup rust-analyzer
 sudo npm install -g typescript-language-server pyright
 rustup update && rustup component add rls rust-analysis rust-src
 
