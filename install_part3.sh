@@ -11,7 +11,7 @@ do
     read USER
 done
 
-sed -i "s/^USER=''/USER=${USER}/g" /mnt/install_part4.sh
+sed -i "s/^USER=''/USER=${USER}/g" /install_part4.sh
 
 echo "Please enter a shell for the user or press enter to accept the default (${DEFAULT_SHELL}):"
 read SHELL

@@ -75,7 +75,7 @@ sh -c 'curl -fLo "${XDG_DATA_HOME:-$HOME/.local/share}"/nvim/site/autoload/plug.
 
 sudo pacman -S --noconfirm neovim clang rustup rust-analyzer
 sudo npm install -g typescript-language-server pyright vscode-langservers-extracted
-rustup update && rustup component add rls rust-analysis rust-src
+rustup install stable && rustup update && rustup component add rls rust-analysis rust-src
 
 nvim +PlugInstall +qall
 ##################################################################
@@ -112,7 +112,7 @@ cd $srcdir/
 cd $HOME/programs/
 sudo pacman -S --noconfirm spotifyd
 git clone https://aur.archlinux.org/spotify-tui.git && cd spotify-tui/
-rustup install stable && makepkg -sri
+rustup install stable && makepkg -sri --noconfirm
 cd $srcdir/
 ####################################################################
 
