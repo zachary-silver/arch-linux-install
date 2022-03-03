@@ -1,6 +1,7 @@
 #!/bin/bash
 
 DEVICE=''
+DEVICE_POSTFIX=''
 DEFAULT_HOSTNAME=archer
 DEFAULT_LOCALE=en_US
 DEFAULT_ZONE=America
@@ -88,7 +89,7 @@ bootctl install
 
 echo -e "default \tarch.conf\ntimeout \t2\nconsole-mode \tmax" > /boot/loader/loader.conf
 
-PARTUUID=$(blkid | grep "^/dev/${DEVICE}3" | tr ' ' '\n' | tail -n1)
+PARTUUID=$(blkid | grep "^/dev/${DEVICE}{DEVICE_POSTFIX}3" | tr ' ' '\n' | tail -n1)
 
 echo -e "title \tArch Linux\nlinux \t/vmlinuz-linux\ninitrd \t/${CPU}-ucode.img\ninitrd \tinitramfs-linux.img\noptions root=${PARTUUID} rw" > /boot/loader/entries/arch.conf
 
