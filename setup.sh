@@ -54,6 +54,7 @@ sudo cp ./pictures/desktop_bg.jpg $HOME/pictures/
 
 ################## dotfiles ######################################
 cd $HOME/
+rm .bashrc
 sudo pacman -S --noconfirm stow
 git clone https://github.com/zachary-silver/dotfiles.git .dotfiles
 cd .dotfiles && rm README.md && stow -vSt ~ *
