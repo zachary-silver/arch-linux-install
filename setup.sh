@@ -2,7 +2,9 @@
 
 srcdir=$(pwd)
 
-sudo pacman -Syu
+sudo pacman -Syu --noconfirm
+
+sudo pacman -S --noconfirm archlinux-keyring
 
 PS3="Enter 1 or 2) "
 echo "Are you on a laptop?"
@@ -44,6 +46,7 @@ sudo mkdir /media
 sudo mkdir /usr/share/xsessions
 mkdir $HOME/pictures
 mkdir $HOME/programs
+mkdir $HOME/projects
 
 sudo ln -s /run/media/$USER /media/
 
@@ -55,6 +58,11 @@ sudo cp ./pictures/desktop_bg.jpg $HOME/pictures/
 ################## dotfiles ######################################
 cd $HOME/
 rm .bashrc
+rm .gitconfig
+rm .xbindkeysrc
+rm .xprofile
+rm -rf .vim
+rm -rf .config
 sudo pacman -S --noconfirm stow
 git clone https://github.com/zachary-silver/dotfiles.git .dotfiles
 cd .dotfiles && rm README.md && stow -vSt ~ *
@@ -71,12 +79,6 @@ rustup update && rustup component add rls rust-analysis rust-src
 
 nvim +PlugInstall +qall
 ##################################################################
-
-################## projects ######################################
-cd $HOME/
-git clone https://github.com/zachary-silver/projects.git
-cd $srcdir/
-####################################################################
 
 ################## silver-dwm ######################################
 cd $HOME/projects/
