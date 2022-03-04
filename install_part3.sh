@@ -26,7 +26,7 @@ else
     done
 fi
 
-sed -i "s/^# %wheel ALL=(ALL) NOPASSWD: ALL/%wheel ALL=(ALL) NOPASSWD: ALL/g" /etc/sudoers
+sed -i "s/^# %wheel ALL=(ALL:ALL) NOPASSWD: ALL/%wheel ALL=(ALL:ALL) NOPASSWD: ALL/g" /etc/sudoers
 
 useradd -m -G wheel -s /bin/${SHELL} ${USER}
 passwd ${USER}
