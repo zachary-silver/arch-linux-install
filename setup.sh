@@ -11,7 +11,7 @@ echo "Are you on a laptop?"
 select option in "Yes" "No"; do
     case $option in
         Yes)
-	        sudo pacman -S --noconfirm acpi acpilight
+	        sudo pacman -S --noconfirm acpi acpilight sof-firmware
             break
             ;;
         No)
