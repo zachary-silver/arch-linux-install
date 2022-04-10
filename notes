@@ -37,3 +37,11 @@
 # your video driver. More info can be found here:
 #
 # https://wiki.archlinux.org/title/Kernel_mode_setting#Early_KMS_start
+#
+# Razer peripherals:
+#
+# polychromatic-cli --colours FFFFFF --option static
+# polychromatic-cli --option brightness -p 25
+# polychromatic-cli --name "Razer Mouse Dock" --option brightness -p 0
+#
+# polychromatic-cli --help

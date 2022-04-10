@@ -168,4 +168,17 @@ sudo cp *.otf /usr/share/fonts/OTF/
 cd $srcdir/
 ####################################################################
 
+################## Razer peripherals ###############################
+cd $HOME/programs/
+sudo pacman -S dkms linux-headers --noconfirm
+sudo gpasswd -a $USER plugdev
+git clone https://aur.archlinux.org/openrazer.git && cd openrazer/
+makepkg -sri --noconfirm
+
+cd $HOME/programs/
+git clone https://aur.archlinux.org/polychromatic.git
+makepkg -sri --noconfirm
+cd $srcdir/
+####################################################################
+
 cd $srcdir/ && cat ./etc/finished.txt
